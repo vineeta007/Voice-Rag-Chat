@@ -1,0 +1,38 @@
+/* Global StyleSheet with Dark Mode Support (Phase 3.3) */
+
+/* Detect system color scheme preference and apply default theme */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        color-scheme: dark;
+    }
+
+    html:not([data-theme="light"]) {
+        color-scheme: dark;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        color-scheme: light;
+    }
+
+    html:not([data-theme="dark"]) {
+        color-scheme: light;
+    }
+}
+
+/* Smooth transitions when switching themes */
+html {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+html[data-theme],
+html[data-theme] * {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Prevent transition on initial load */
+html.no-transition,
+html.no-transition * {
+    transition: none !important;
+}

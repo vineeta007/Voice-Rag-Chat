@@ -1,0 +1,51 @@
+# Don't upload these to GitHub
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Environment variables
+.env
+google-cloud-key.json
+
+# Node modules
+node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Temporary files
+uploads/
+*.tmp
+*.temp
+
+# Data files (will be regenerated)
+feedback_data.json
+faiss_index.pkl
+
+# Cleanup script
+cleanup_unused_files.sh
+cleanup_report.txt

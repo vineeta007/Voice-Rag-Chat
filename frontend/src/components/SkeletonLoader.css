@@ -1,0 +1,101 @@
+/* ✨ Skeleton Loading Animation - Phase 2.2 */
+
+.skeleton-loader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+    padding: 0rem;
+}
+
+/* Individual skeleton lines */
+.skeleton-line {
+    height: 16px;
+    border-radius: 4px;
+    background: linear-gradient(
+        90deg,
+        rgba(200, 210, 220, 0.3) 0%,
+        rgba(210, 220, 230, 0.5) 50%,
+        rgba(200, 210, 220, 0.3) 100%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-pulse 1.8s ease-in-out infinite;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+/* Stagger animation for each line */
+.skeleton-line:nth-child(1) {
+    animation-delay: 0s;
+    width: 95%;
+}
+
+.skeleton-line:nth-child(2) {
+    animation-delay: 0.1s;
+    width: 92%;
+}
+
+.skeleton-line:nth-child(3) {
+    animation-delay: 0.2s;
+    width: 88%;
+}
+
+.skeleton-line:nth-child(4) {
+    animation-delay: 0.3s;
+    width: 78%;
+}
+
+.skeleton-line:nth-child(5) {
+    animation-delay: 0.4s;
+    width: 72%;
+}
+
+/* Shorter line for paragraph endings */
+.skeleton-line.skeleton-line-short {
+    width: 45%;
+}
+
+/* Smooth pulsing animation */
+@keyframes skeleton-pulse {
+    0% {
+        background-position: 200% 0;
+        opacity: 0.6;
+    }
+    50% {
+        background-position: -200% 0;
+        opacity: 1;
+    }
+    100% {
+        background-position: 200% 0;
+        opacity: 0.6;
+    }
+}
+
+/* Reduced motion support - smoother substitute for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .skeleton-line {
+        animation: skeleton-pulse-reduced 2s ease-in-out infinite;
+    }
+
+    @keyframes skeleton-pulse-reduced {
+        0% {
+            opacity: 0.7;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.7;
+        }
+    }
+}
+
+/* Dark mode support (if implemented later) */
+@media (prefers-color-scheme: dark) {
+    .skeleton-line {
+        background: linear-gradient(
+            90deg,
+            rgba(40, 50, 60, 0.3) 0%,
+            rgba(50, 60, 70, 0.5) 50%,
+            rgba(40, 50, 60, 0.3) 100%
+        );
+    }
+}

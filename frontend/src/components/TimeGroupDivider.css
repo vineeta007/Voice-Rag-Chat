@@ -1,0 +1,74 @@
+/* ⏰ Time Group Divider - Phase 2.6 */
+
+.time-group-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    animation: fadeInDivider 0.4s ease-out;
+}
+
+@keyframes fadeInDivider {
+    from {
+        opacity: 0;
+        transform: scaleY(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+}
+
+.divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(157, 170, 185, 0.3),
+        transparent
+    );
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.divider-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1rem;
+    background: rgba(245, 249, 252, 0.6);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+/* Alternate styling for visual variety */
+.time-group-divider:nth-child(even) .divider-label {
+    background: rgba(240, 245, 250, 0.5);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Smooth scroll between groups */
+@media (prefers-reduced-motion: reduce) {
+    .time-group-divider {
+        animation: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .time-group-divider {
+        gap: 0.75rem;
+        margin: 1rem 0;
+    }
+
+    .divider-label {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.7rem;
+    }
+}

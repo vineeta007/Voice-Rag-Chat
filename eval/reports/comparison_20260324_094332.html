@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Benchmark Comparison</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 24px; background: #f7f9fc; color: #1f2a44; }
+    h1 { margin-bottom: 8px; }
+    .meta { margin-bottom: 24px; color: #41506f; }
+    .card { background: white; border: 1px solid #dce3f0; border-radius: 10px; padding: 16px; margin-bottom: 18px; }
+    canvas { max-width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>Benchmark Comparison</h1>
+  <div class="meta">Baseline: baseline_local | Candidate: baseline_local</div>
+
+  <div class="card">
+    <h3>Core Metrics (Before vs After)</h3>
+    <canvas id="metricsChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Multilingual Parity Gaps (Lower is better)</h3>
+    <canvas id="parityChart"></canvas>
+  </div>
+
+  <script>
+    const labels = ["retrieval_hit@1", "retrieval_hit@3", "retrieval_hit@5", "answer_correctness", "hallucination_rate", "latency_avg_ms", "latency_p95_ms"];
+    const baselineVals = [0.7142857142857143, 0.7857142857142857, 0.7857142857142857, 0.1575794346213549, 0.6071428571428571, 2284.825569964596, 3984.49616599828];
+    const candidateVals = [0.7142857142857143, 0.7857142857142857, 0.7857142857142857, 0.15506398939606864, 0.6428571428571429, 2939.827715637096, 3902.565416006837];
+
+    new Chart(document.getElementById('metricsChart'), {
+      type: 'bar',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Baseline', data: baselineVals, backgroundColor: 'rgba(90, 123, 161, 0.6)' },
+          { label: 'Candidate', data: candidateVals, backgroundColor: 'rgba(71, 173, 132, 0.6)' }
+        ]
+      },
+      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+
+    const parityLabels = ["correctness_gap_abs", "hallucination_gap_abs", "latency_gap_ms_abs"];
+    const parityBaseline = [0.186494959580022, 0.49999999999999994, 1024.987270777014];
+    const parityCandidate = [0.18644767135243132, 0.42857142857142855, 275.4076575760596];
+
+    new Chart(document.getElementById('parityChart'), {
+      type: 'bar',
+      data: {
+        labels: parityLabels,
+        datasets: [
+          { label: 'Baseline', data: parityBaseline, backgroundColor: 'rgba(228, 103, 74, 0.6)' },
+          { label: 'Candidate', data: parityCandidate, backgroundColor: 'rgba(52, 152, 219, 0.6)' }
+        ]
+      },
+      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+  </script>
+</body>
+</html>

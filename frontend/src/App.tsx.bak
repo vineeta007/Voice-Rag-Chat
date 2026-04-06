@@ -1,0 +1,210 @@
+import { useState, useEffect } from 'react';
+import { ChatInterface, Message } from './components/ChatInterface';
+import { TextInput } from './components/TextInput';
+import { VoiceInput } from './components/VoiceInput';
+import { apiService, Language } from './services/api';
+import './App.css';
+
+function App() {
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [inputMode, setInputMode] = useState<'text' | 'voice'>('text');
+    const [selectedLanguage, setSelectedLanguage] = useState('English');
+    const [languages, setLanguages] = useState<Language[]>([]);
+    const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+    const [error, setError] = useState<string | null>(null);
+    const [retryCount, setRetryCount] = useState(0);
+
+    useEffect(() => {
+        // Load supported languages
+        loadLanguages();
+        // Check backend health
+        checkBackendHealth();
+
+        // Retry connection every 5 seconds if offline
+        const interval = setInterval(() => {
+            if (backendStatus === 'offline') {
+                checkBackendHealth();
+            }
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [backendStatus]);
+
+    const loadLanguages = async () => {
+        try {
+            const langs = await apiService.getSupportedLanguages();
+            setLanguages(langs);
+        } catch (error) {
+            console.error('Error loading languages:', error);
+            // Fallback languages
+            setLanguages([
+                { code: 'en', name: 'English' },
+                { code: 'hi', name: 'Hindi' },
+                { code: 'gu', name: 'Gujarati' },
+                { code: 'ta', name: 'Tamil' },
+                { code: 'te', name: 'Telugu' },
+                { code: 'bn', name: 'Bengali' },
+                { code: 'mr', name: 'Marathi' },
+            ]);
+        }
+    };
+
+    const checkBackendHealth = async () => {
+        try {
+            await apiService.healthCheck();
+            setBackendStatus('online');
+            setError(null);
+            setRetryCount(0);
+        } catch (error) {
+            setBackendStatus('offline');
+            setRetryCount(prev => prev + 1);
+        }
+    };
+
+    const addMessage = (content: string, type: 'user' | 'assistant', isVoice = false, language?: string) => {
+        const newMessage: Message = {
+            id: Date.now().toString(),
+            type,
+            content,
+            timestamp: new Date(),
+            isVoice,
+            language,
+        };
+        setMessages((prev) => [...prev, newMessage]);
+    };
+
+    const handleTextQuery = async (text: string) => {
+        if (backendStatus === 'offline') {
+            setError('Backend is offline. Please wait for connection or check if services are running.');
+            return;
+        }
+
+        setError(null);
+        addMessage(text, 'user', false, selectedLanguage);
+        setIsProcessing(true);
+
+        try {
+            const response = await apiService.textQuery(text, selectedLanguage);
+            addMessage(response.answer, 'assistant', false, response.language);
+        } catch (error: any) {
+            console.error('Error processing query:', error);
+            const errorMsg = error.response?.data?.detail || error.message || 'Unable to process your request';
+            addMessage(
+                `Sorry, I encountered an error: ${errorMsg}. Please try again.`,
+                'assistant'
+            );
+            setError(errorMsg);
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    const handleVoiceQuery = async (transcribedText: string) => {
+        if (backendStatus === 'offline') {
+            setError('Backend is offline. Please wait for connection or check if services are running.');
+            return;
+        }
+
+        if (!transcribedText || transcribedText.trim().length === 0) {
+            setError('No speech detected. Please try again.');
+            return;
+        }
+
+        setError(null);
+
+        // Add the transcribed text as user message
+        addMessage(transcribedText, 'user', true, selectedLanguage);
+        setIsProcessing(true);
+
+        try {
+            // Process as regular text query
+            const response = await apiService.textQuery(transcribedText, selectedLanguage);
+            addMessage(response.answer, 'assistant', false, response.language);
+        } catch (error: any) {
+            console.error('Error processing voice query:', error);
+            const errorMsg = error.response?.data?.detail || error.message || 'Unable to process your request';
+            addMessage(
+                `Sorry, I encountered an error: ${errorMsg}. Please try again.`,
+                'assistant'
+            );
+            setError(errorMsg);
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    return (
+        <div className="app">
+            <header className="app-header">
+                <div className="header-content">
+                    <h1>🎓 University Voice RAG</h1>
+                    <div className="header-controls">
+                        <div className="status-indicator">
+                            <span className={`status-dot ${backendStatus}`}></span>
+                            <span className="status-text">
+                                {backendStatus === 'checking' && 'Checking...'}
+                                {backendStatus === 'online' && 'Connected'}
+                                {backendStatus === 'offline' && `Offline ${retryCount > 0 ? `(Retry ${retryCount})` : ''}`}
+                            </span>
+                            {backendStatus === 'offline' && (
+                                <button onClick={checkBackendHealth} className="retry-button" title="Retry connection">
+                                    🔄
+                                </button>
+                            )}
+                        </div>
+                        <select
+                            value={selectedLanguage}
+                            onChange={(e) => setSelectedLanguage(e.target.value)}
+                            className="language-selector"
+                        >
+                            {languages.map((lang) => (
+                                <option key={lang.code} value={lang.name}>
+                                    {lang.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                {error && (
+                    <div className="error-banner">
+                        <span>⚠️ {error}</span>
+                        <button onClick={() => setError(null)} className="close-error">×</button>
+                    </div>
+                )}
+            </header>
+
+            <main className="app-main">
+                <ChatInterface messages={messages} isProcessing={isProcessing} />
+            </main>
+
+            <footer className="app-footer">
+                <div className="input-mode-selector">
+                    <button
+                        className={`mode-button ${inputMode === 'text' ? 'active' : ''}`}
+                        onClick={() => setInputMode('text')}
+                    >
+                        ⌨️ Text
+                    </button>
+                    <button
+                        className={`mode-button ${inputMode === 'voice' ? 'active' : ''}`}
+                        onClick={() => setInputMode('voice')}
+                        title="Voice feature requires Whisper (may still be installing)"
+                    >
+                        🎤 Voice
+                    </button>
+                </div>
+
+                <div className="input-container">
+                    {inputMode === 'text' ? (
+                        <TextInput onSubmit={handleTextQuery} isProcessing={isProcessing || backendStatus === 'offline'} />
+                    ) : (
+                        <VoiceInput onTranscript={handleVoiceQuery} isProcessing={isProcessing || backendStatus === 'offline'} />
+                    )}
+                </div>
+            </footer>
+        </div>
+    );
+}
+
+export default App;

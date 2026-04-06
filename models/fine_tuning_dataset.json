@@ -1,0 +1,1807 @@
+[
+    {
+        "user_input": "What kind of recognition and memberships does Karnavati University have?",
+        "intent": "university_recognition_memberships",
+        "response": "Karnavati University is recognized by the University Grants Commission (UGC) and is a member of the Association of Commonwealth Universities (ACU). This underscores the university's commitment to maintaining high educational standards and fostering a global perspective."
+    },
+    {
+        "user_input": "What undergraduate and postgraduate programs does Karnavati University offer?",
+        "intent": "program_offerings",
+        "response": "Karnavati University offers undergraduate and postgraduate programs in fields such as management, design, law, liberal arts, commerce, media studies, and dentistry. These programs are facilitated through six constituent colleges."
+    },
+    {
+        "user_input": "Does Karnavati University provide any financial aid or scholarships?",
+        "intent": "scholarship_opportunities",
+        "response": "Yes, Karnavati University offers scholarships to deserving candidates, aiming to support a diverse range of backgrounds and economic statuses. Accessibility to quality education for all students is a cornerstone of our philosophy."
+    },
+    {
+        "user_input": "What kind of career support does the university offer?",
+        "intent": "career_placement_support",
+        "response": "Karnavati University places a strong emphasis on career readiness and employability. A dedicated global placement team attracts over 200 companies annually to offer a plethora of employment opportunities to students across various sectors."
+    },
+    {
+        "user_input": "What makes Karnavati University innovative in its educational approach?",
+        "intent": "educational_innovation",
+        "response": "Innovation in education is at the heart of Karnavati University's ethos. The university leverages state-of-the-art academic infrastructure and fosters collaborative partnerships with top-class universities and institutions worldwide. The curriculum is enriched with opportunities for externships, guest lectures, certification courses, and industry visits, ensuring a comprehensive and experiential learning experience for students."
+    },
+    {
+        "user_input": "What does the peacock in Karnavati University's insignia represent?",
+        "intent": "insignia_meaning",
+        "response": "The peacock in Karnavati University's insignia symbolizes our nation's pride, embodying nobility, beauty, renewal, and immortality. It is revered in Indian culture for wisdom, life's beauty, and integrity."
+    },
+    {
+        "user_input": "What is Karnavati University's motto and what does it mean?",
+        "intent": "university_motto",
+        "response": "Karnavati University's motto is \"Shikshanat Siddhi.\" This translates to the transformative journey from education to achievement, reflecting the belief that through diligent learning and personal growth, one can attain success and fulfillment."
+    },
+    {
+        "user_input": "How does Karnavati University incorporate Indian heritage into its educational approach?",
+        "intent": "heritage_integration",
+        "response": "The peacock in the insignia, revered in Indian culture, symbolizes the university's connection to its heritage. Through education, Karnavati University aims to embrace this heritage while nurturing growth and innovation within its community, fostering an environment where education serves as the cornerstone for achieving greatness in life and career."
+    },
+    {
+        "user_input": "What is the university's commitment to its students?",
+        "intent": "commitment_to_students",
+        "response": "Karnavati University is committed to fostering an environment where education serves as the cornerstone for achieving greatness in life and career. The university emphasizes diligent learning and personal growth to enable students to attain success and fulfillment."
+    },
+    {
+        "user_input": "What is the core philosophy of Karnavati University?",
+        "intent": "university_philosophy",
+        "response": "Karnavati University's core philosophy is encapsulated in the motto \"Shikshanat Siddhi,\" which signifies the transformative journey from education to achievement. The university believes that through diligent learning and personal growth, students can attain success and fulfillment, underscoring the commitment to providing an environment where education is the cornerstone for achieving greatness."
+    },
+    {
+        "user_input": "What is the main focus of the Unitedworld Institute of Technology (UIT)?",
+        "intent": "uit_main_focus",
+        "response": "Unitedworld Institute of Technology (UIT) is dedicated to developing the next generation of leaders in engineering, science, and technology. It focuses on establishing a strong base in engineering fundamentals and encouraging students to apply their skills to solve practical problems across disciplines."
+    },
+    {
+        "user_input": "How does UIT approach engineering education?",
+        "intent": "uit_engineering_education_approach",
+        "response": "Engineering education at UIT focuses on understanding the mechanics behind how things function and finding viable solutions using scientific methods and theory application. The curriculum is designed to prepare students for the comprehensive role of engineers."
+    },
+    {
+        "user_input": "What kind of learning environment does UIT offer?",
+        "intent": "uit_learning_environment",
+        "response": "UIT fosters a student-centric learning environment that promotes active learning and application. This approach aims to engage students and encourage them to actively participate in their education."
+    },
+    {
+        "user_input": "What skills will I gain as an engineering student at UIT?",
+        "intent": "uit_engineering_skills",
+        "response": "As an engineering student at UIT, you will gain skills in designing, evaluating, developing, testing, modifying, installing, inspecting, and maintaining a vast range of products and systems. The program ensures graduates are well-equipped for their engineering careers."
+    },
+    {
+        "user_input": "Does UIT encourage interdisciplinary work?",
+        "intent": "uit_interdisciplinary_work",
+        "response": "Yes, UIT encourages students to work across disciplines, applying their skills to solve practical problems. This interdisciplinary approach is a key part of the curriculum."
+    },
+    {
+        "user_input": "What kind of financial aid is available to students?",
+        "intent": "scholarship_opportunities",
+        "response": "UIT offers various scholarship opportunities, including Government Scholarships for B.Tech students and Defence Scholarships for children of Expired Service, Injured/Retired, or Serving Personnel."
+    },
+    {
+        "user_input": "Does UIT help students find internships and jobs after graduation?",
+        "intent": "internship_and_placement",
+        "response": "Yes, UIT provides comprehensive internship and placement support. We have linkages with over 100 companies and offer 100% placement assistance to our students."
+    },
+    {
+        "user_input": "What are the facilities like at UIT?",
+        "intent": "infrastructure",
+        "response": "UIT boasts state-of-the-art infrastructure, including modern labs, workshops, libraries, hostels, classrooms, and other essential facilities designed to enhance the learning experience."
+    },
+    {
+        "user_input": "Does the university support student startups and innovation?",
+        "intent": "innovation_and_incubation",
+        "response": "Yes, UIT has an on-campus Karnavati University Innovation and Incubation Centre (KUIC) that supports students in developing their innovative ideas and transforming them into successful ventures."
+    },
+    {
+        "user_input": "Are the degrees offered by UIT recognized?",
+        "intent": "degree_recognition",
+        "response": "Yes, UIT offers globally recognized and UGC-approved degrees, ensuring that your education is valued and respected worldwide."
+    },
+    {
+        "user_input": "What are the minimum academic requirements for general category applicants?",
+        "intent": "general_category_eligibility",
+        "response": "General category applicants need a minimum of 65% aggregate score in their 10+2 (or equivalent) examination, with Physics, Chemistry, and Mathematics as subjects. The 10+2 qualification must be from a recognized higher secondary board as per the Council of Boards of School Education (COBSE) List."
+    },
+    {
+        "user_input": "What score do SC/ST/OBC category applicants need to be eligible?",
+        "intent": "reserved_category_eligibility",
+        "response": "Applicants belonging to the SC/ST/OBC category require a minimum of 50% aggregate score in their 10+2 (or equivalent) examination, with Physics, Chemistry, and Mathematics as subjects. The 10+2 qualification must be from a recognized higher secondary board as per the COBSE List."
+    },
+    {
+        "user_input": "What are the selection criteria for admission?",
+        "intent": "selection_criteria",
+        "response": "Selection is based on JEE MAINS 2025 or GUJCET2025 scores, followed by a personal interview."
+    },
+    {
+        "user_input": "How does the curriculum prepare students to understand the impact of engineering on the environment?",
+        "intent": "environmental_impact_understanding",
+        "response": "The curriculum emphasizes understanding the impact of professional engineering work in societal and environmental contexts and demonstrates the knowledge of and need for sustainable development. This is covered under the common program outcome 'Environment and Sustainability'."
+    },
+    {
+        "user_input": "Does the program help students develop teamwork and leadership skills?",
+        "intent": "teamwork_leadership_skills",
+        "response": "Yes, the program includes opportunities to function effectively as an individual, and as a member or leader in diverse teams and in multidisciplinary settings. This is described in the common program outcome 'Individual and Team Work'."
+    },
+    {
+        "user_input": "What will I learn in the Computer Science and Engineering B.Tech program?",
+        "intent": "cse_curriculum_overview",
+        "response": "The B.Tech in Computer Science and Engineering program will equip you with foundational knowledge and cutting-edge skills in computing, programming, and information technology. You'll delve into areas like software development, system design, machine learning, and artificial intelligence."
+    },
+    {
+        "user_input": "How does the program prepare students for jobs in the tech industry?",
+        "intent": "cse_career_preparation",
+        "response": "The program prepares students by providing them with a blend of theoretical concepts and practical projects. This combination enables them to develop innovative solutions and tackle complex engineering challenges. The curriculum also fosters analytical thinking, problem-solving abilities, and creativity, ensuring graduates are ready to contribute to the evolving tech landscape."
+    },
+    {
+        "user_input": "What kind of skills will I develop in this program?",
+        "intent": "cse_skills_development",
+        "response": "Throughout the B.Tech in Computer Science and Engineering program, you will develop skills in computing, programming, software development, and system design. Furthermore, you'll cultivate analytical thinking, problem-solving abilities, and creativity, all of which are essential for success in the field."
+    },
+    {
+        "user_input": "Does the program cover artificial intelligence?",
+        "intent": "cse_ai_focus",
+        "response": "Yes, the B.Tech in Computer Science and Engineering program delves into artificial intelligence, providing students with knowledge and skills in this cutting-edge area of computer science."
+    },
+    {
+        "user_input": "Will I get hands-on experience in this program?",
+        "intent": "cse_practical_experience",
+        "response": "Yes, the program emphasizes practical application. Through practical projects, students gain the expertise needed to tackle complex engineering challenges and adapt to rapid technological advancements. The program uses a blend of theoretical concepts and practical application."
+    },
+    {
+        "user_input": "What career paths are available to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "Graduates of this program are well-prepared for successful careers as professionals in industry, government, academia, research, entrepreneurial ventures, and consulting firms. The program provides a strong foundation in Computer Science and Applications, along with problem-solving and programming skills that are highly sought after in these diverse sectors."
+    },
+    {
+        "user_input": "Does the program emphasize practical skills and real-world problem-solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program is designed to equip students with analytical, design, development, and soft skills necessary to find innovative solutions to real-world problems. This is achieved through collaboration with industry and professional societies, ensuring that the curriculum remains relevant and addresses current challenges."
+    },
+    {
+        "user_input": "Does the program encourage entrepreneurship and teamwork?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "The program actively fosters entrepreneurship, managerial skills, and teamwork. Students are encouraged to demonstrate good analytical, design, and implementation skills, contributing to the betterment of both individuals and society. This is achieved through various projects and activities that simulate real-world scenarios."
+    },
+    {
+        "user_input": "Does the program promote ethical behavior and lifelong learning?",
+        "intent": "ethics_lifelong_learning",
+        "response": "Yes, the program emphasizes the importance of ethical behavior, social responsibility, and lifelong learning. Graduates are expected to be ethical and socially responsible individuals who are committed to continuous personal and professional development to fulfill their goals."
+    },
+    {
+        "user_input": "How does the program integrate industry collaboration?",
+        "intent": "industry_collaboration",
+        "response": "The program integrates industry collaboration to equip students with the skills to solve real-world problems. This collaboration helps ensure the curriculum is relevant and that students gain practical experience valued by employers. Collaboration takes place with industry and professional societies."
+    },
+    {
+        "user_input": "Where can I find information about the learning outcomes of this program?",
+        "intent": "find_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details on the learning outcomes."
+    },
+    {
+        "user_input": "What are the specific skills and knowledge I'll gain from this program?",
+        "intent": "understand_programme_skills",
+        "response": "The specific skills and knowledge you will gain are outlined in the 'Common Programme Outcomes' section. Please consult that section for a detailed overview."
+    },
+    {
+        "user_input": "I'm interested in understanding what I'll be able to do after completing this program. Where can I find this information?",
+        "intent": "determine_post_programme_capabilities",
+        "response": "You can find information about what you'll be able to do after completing the program in the 'Common Programme Outcomes' section. This section details the expected capabilities of graduates."
+    },
+    {
+        "user_input": "Are the program outcomes the same for all programs mentioned in this brochure?",
+        "intent": "confirm_programme_outcome_consistency",
+        "response": "The brochure directs you to the 'Common Programme Outcomes' section, implying that the listed outcomes are applicable to multiple programs. Review that section to understand which specific outcomes apply to your program of interest."
+    },
+    {
+        "user_input": "Where is the 'Common Programme Outcomes' section located in this brochure?",
+        "intent": "locate_common_programme_outcomes",
+        "response": "The brochure indicates that you should refer to the 'Common Programme Outcomes' section. Please look for this section within the brochure to find the information you need."
+    },
+    {
+        "user_input": "What kind of modern tech will I get to use during the program?",
+        "intent": "emerging_technologies",
+        "response": "The program emphasizes the ability to work with emerging technologies in computing, preparing you for the forefront of the field. The specific technologies will vary based on industry trends and course content, but the focus is always on equipping you with skills relevant to the current and future landscape."
+    },
+    {
+        "user_input": "Does the program offer internships, and what kind of real-world problems can I expect to tackle?",
+        "intent": "industry_experience",
+        "response": "Yes, the program includes industry internships and research projects designed to provide you with practical Engineering Practice. You will have the opportunity to solve live problems in various domains, applying the knowledge and skills you've acquired throughout your studies."
+    },
+    {
+        "user_input": "Can you give me more details on the research projects involved?",
+        "intent": "research_projects",
+        "response": "Research projects are a key component, allowing you to delve into specific areas of interest and contribute to solving real-world challenges. These projects, coupled with industry internships, provide a comprehensive practical experience, enabling you to 'Demonstrate Engineering Practice learned through industry internship and research project to solve live problems in various domains.'"
+    },
+    {
+        "user_input": "How does the program help me stay up-to-date with new computing technologies?",
+        "intent": "tech_adaptability",
+        "response": "The program is designed to foster your ability to adapt to and work with emerging technologies in computing. Through coursework, hands-on projects, and exposure to industry practices, you will develop the skills necessary to remain current and competitive in the ever-evolving field of computing."
+    },
+    {
+        "user_input": "Will I get a chance to apply what I learn in the classroom to real-world situations?",
+        "intent": "practical_application",
+        "response": "Absolutely. The program emphasizes the application of theoretical knowledge to real-world scenarios through industry internships and research projects. This practical experience is crucial for developing problem-solving skills and preparing you for a successful career. You will 'Demonstrate Engineering Practice learned through industry internship and research project to solve live problems in various domains.'"
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech in Computer Science & Engineering?",
+        "intent": "cse_career_options",
+        "response": "A B.Tech in Computer Science & Engineering offers a wide array of career opportunities. You can pursue roles in software development, system engineering, data analysis, and cybersecurity. These roles are available in various settings, including tech companies, startups, and multinational corporations."
+    },
+    {
+        "user_input": "Does this degree lead to opportunities in newer technologies?",
+        "intent": "cse_emerging_tech",
+        "response": "Yes, a B.Tech in Computer Science & Engineering opens doors to innovative fields like artificial intelligence, machine learning, and blockchain technology. The curriculum is designed to prepare you for these cutting-edge areas."
+    },
+    {
+        "user_input": "What kind of work might I be doing after graduation?",
+        "intent": "cse_typical_projects",
+        "response": "Graduates often find themselves working on cutting-edge projects, developing new software solutions, or enhancing cybersecurity measures. The specific work depends on the chosen role and company, but it will likely involve applying your technical skills to solve real-world problems."
+    },
+    {
+        "user_input": "Will this degree help me get a job in consulting or management?",
+        "intent": "cse_consulting_management",
+        "response": "Absolutely. The analytical and problem-solving skills acquired during the B.Tech programme prepare graduates for roles in technology consulting, project management, and technical leadership. These skills are highly valued in the global job market."
+    },
+    {
+        "user_input": "Are Computer Science graduates in demand?",
+        "intent": "cse_job_market",
+        "response": "Yes, graduates with a B.Tech in Computer Science & Engineering are highly sought after in the global job market. The tech industry's rapid growth ensures a consistent demand for skilled professionals who can contribute to software development, cybersecurity, and other critical areas."
+    },
+    {
+        "user_input": "How long is the Computer Engineering program?",
+        "intent": "programme_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "programme_eligibility",
+        "response": "To be eligible for the Computer Engineering program, you must have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "programme_department",
+        "response": "This program is offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "I finished high school. Can I apply for this program?",
+        "intent": "programme_eligibility_confirmation",
+        "response": "Yes, if you have completed 10 + 2 (high school), you meet the eligibility requirements for the Computer Engineering program."
+    },
+    {
+        "user_input": "Tell me about the Computer Engineering program's duration and eligibility.",
+        "intent": "programme_duration_and_eligibility",
+        "response": "The Computer Engineering program is 4 years long, and the eligibility requirement is completion of 10 + 2 (high school)."
+    },
+    {
+        "user_input": "What is the B.Tech Computer Science and Engineering specialization in Artificial Intelligence & Machine Learning about?",
+        "intent": "cse_ai_ml_overview",
+        "response": "The B.Tech in Computer Science and Engineering with a specialization in Artificial Intelligence & Machine Learning is a forward-thinking program designed to equip students with the expertise needed to excel in the rapidly evolving fields of AI and ML. It focuses on areas such as deep learning, neural networks, natural language processing, and robotics, preparing students to innovate and tackle complex technological challenges."
+    },
+    {
+        "user_input": "What specific areas of AI and ML does this specialization cover?",
+        "intent": "ai_ml_focus_areas",
+        "response": "This specialization focuses on key areas within AI and ML, including deep learning, neural networks, natural language processing, and robotics. The curriculum is designed to provide a comprehensive understanding of these technologies."
+    },
+    {
+        "user_input": "How does the program prepare students for real-world applications of AI and ML?",
+        "intent": "practical_training",
+        "response": "The program combines rigorous academic coursework with practical, hands-on projects. This approach ensures that students are trained to design intelligent systems and applications, preparing them for real-world implementation of AI and ML solutions."
+    },
+    {
+        "user_input": "What kind of jobs can I get after graduating from this program?",
+        "intent": "career_opportunities",
+        "response": "Graduates of this program are well-prepared for pioneering roles in the tech industry. They can pursue careers in AI research, machine learning engineering, and other roles that involve the creation and implementation of AI and ML solutions across various industries."
+    },
+    {
+        "user_input": "Is this program a good starting point for a career in AI research?",
+        "intent": "ai_research_gateway",
+        "response": "Yes, this program serves as a gateway to pioneering roles in tech, including AI research. The specialization provides a strong foundation in the core concepts and practical skills necessary to succeed in AI research and development."
+    },
+    {
+        "user_input": "What career paths are available to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "The program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms. It aims to provide a strong foundation in Computer Science and Applications, along with problem-solving and programming skills, to facilitate these diverse career paths."
+    },
+    {
+        "user_input": "Does the program focus on practical skills and real-world problem-solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program equips students with analytical, design, development, and soft skills to find innovative solutions to real-world problems in collaboration with industry and professional societies. A key objective is to enable students to apply their knowledge to practical challenges."
+    },
+    {
+        "user_input": "Does the program encourage entrepreneurship or teamwork?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "The program aims to inculcate entrepreneurship, managerial skills, and teamwork in students. This is achieved through the demonstration of good analytical, design, and implementation skills, ultimately contributing to the betterment of individuals and society."
+    },
+    {
+        "user_input": "Does the program address ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program aims to produce graduates who are ethical, socially responsible, and lifelong learners. This emphasis on ethics and social responsibility is a core component of the program's objectives."
+    },
+    {
+        "user_input": "Will I be prepared for lifelong learning after graduating?",
+        "intent": "lifelong_learning",
+        "response": "The program is designed to produce graduates who are lifelong learners. This means you will be equipped with the skills and mindset necessary to continue learning and adapting throughout your career, ensuring you can fulfill your personal and professional goals."
+    },
+    {
+        "user_input": "Where can I find information about the general learning outcomes for this programme?",
+        "intent": "find_common_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details on the general learning outcomes applicable to this programme. A link to this section should be available within this document."
+    },
+    {
+        "user_input": "What are the overall programme outcomes I can expect?",
+        "intent": "understand_overall_outcomes",
+        "response": "The specific programme outcomes are detailed in the 'Common Programme Outcomes' section. Please consult that section for a comprehensive overview."
+    },
+    {
+        "user_input": "I'm interested in learning about the programme's objectives. Where should I look?",
+        "intent": "locate_programme_objectives",
+        "response": "The programme's objectives, described as 'Common Programme Outcomes', can be found in the linked section of this document. Please navigate to that section for more information."
+    },
+    {
+        "user_input": "Does this programme have a set of common learning goals?",
+        "intent": "confirm_common_learning_goals",
+        "response": "Yes, this programme has a set of common learning goals, which are outlined in the 'Common Programme Outcomes' section. Please refer to that section for details."
+    },
+    {
+        "user_input": "Where can I find the details on what I'll be able to achieve after completing this program?",
+        "intent": "achievements_after_completion",
+        "response": "Information regarding the achievements you can expect after completing this program can be found in the 'Common Programme Outcomes' section. Please consult this section for a comprehensive list."
+    },
+    {
+        "user_input": "Can you tell me more about the practical application of this program?",
+        "intent": "programme_practical_application",
+        "response": "This program focuses on applying ICT solutions to real-world problems. You'll learn to analyze, design, develop, and test software applications and systems for worldwide networks, integrating ICT to solve practical issues."
+    },
+    {
+        "user_input": "What kind of infrastructure knowledge will I gain?",
+        "intent": "infrastructure_knowledge",
+        "response": "You will learn to analyze and recommend the appropriate Information and Communication infrastructure needed for project implementation. This includes understanding the components and configurations required for effective ICT projects."
+    },
+    {
+        "user_input": "Will I be able to develop software in this program?",
+        "intent": "software_development_skills",
+        "response": "Yes, you will. A core component of the program involves identifying, analyzing, designing, developing, and testing software applications and systems for a world-wide network of computers."
+    },
+    {
+        "user_input": "Does the program address the ethical implications of technology?",
+        "intent": "ethical_implications_of_technology",
+        "response": "Yes, the program emphasizes understanding the social, ethical, and economic implications of technology adoption. You'll learn to analyze problems, identify solutions, and implement them using ICT concepts while considering these broader impacts."
+    },
+    {
+        "user_input": "What kind of problem-solving skills will I develop?",
+        "intent": "problem_solving_skills",
+        "response": "You will develop the ability to analyze problems, identify solutions, and implement them using ICT concepts, algorithms, and industry best practices. The program emphasizes a comprehensive approach to problem-solving in the context of information and communication technology."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech in AI and Machine Learning?",
+        "intent": "ai_ml_career_options",
+        "response": "A B.Tech degree specializing in AI and Machine Learning prepares you for roles such as AI specialists, machine learning engineers, and data scientists. These roles involve applying your expertise in various sectors."
+    },
+    {
+        "user_input": "Which industries typically hire graduates with AI and ML expertise?",
+        "intent": "ai_ml_industry_demand",
+        "response": "Graduates with expertise in AI and Machine Learning are in demand in sectors like autonomous vehicles, healthcare, and smart city technologies. These industries are actively seeking professionals who can apply AI and ML to solve complex problems and drive innovation."
+    },
+    {
+        "user_input": "How do AI and ML graduates contribute to technological advancement?",
+        "intent": "ai_ml_tech_contribution",
+        "response": "Graduates with a deep knowledge of AI and ML are crucial for innovation in tech companies, startups, and research institutions. They are key players in driving technological progress by developing and implementing intelligent systems."
+    },
+    {
+        "user_input": "What skills do I need to succeed in an AI and ML career?",
+        "intent": "ai_ml_required_skills",
+        "response": "To succeed in an AI and ML career, you'll need strong skills in analyzing data and creating intelligent systems. These skills will enable you to tackle modern challenges and contribute to shaping the future of technology."
+    },
+    {
+        "user_input": "Are AI and ML graduates only working for big companies, or are there other opportunities?",
+        "intent": "ai_ml_employment_sectors",
+        "response": "While many AI and ML graduates find positions in established tech companies, there are also opportunities in startups and research institutions. Your skills will be valuable across a range of organizations that are focused on technological innovation and problem-solving."
+    },
+    {
+        "user_input": "How long does the Computer Engineering program last?",
+        "intent": "programme_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "admission_eligibility",
+        "response": "To be eligible for the Computer Engineering program, you need to have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "programme_department",
+        "response": "This is a Computer Engineering program, offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "If I have completed high school, can I apply to the Computer Engineering program?",
+        "intent": "eligibility_confirmation",
+        "response": "Yes, if you have completed 10 + 2 (high school), you meet the eligibility criteria for applying to the Computer Engineering program."
+    },
+    {
+        "user_input": "I'm interested in Computer Engineering. How long will it take to complete the degree?",
+        "intent": "duration_computer_engineering",
+        "response": "The Computer Engineering degree program is 4 years in duration."
+    },
+    {
+        "user_input": "What is the B.Tech Computer Science and Engineering with Data Science specialization about?",
+        "intent": "data_science_program_overview",
+        "response": "The B.Tech in Computer Science and Engineering with a specialization in Data Science is a cutting-edge undergraduate program designed to equip students with the foundational principles of computer science, engineering, and the specialized skills required in the rapidly growing field of data science. It integrates knowledge of algorithms, data structures, machine learning, and big data analytics."
+    },
+    {
+        "user_input": "What skills will I gain from the Data Science specialization?",
+        "intent": "data_science_skills_acquired",
+        "response": "This program equips you with skills in algorithms, data structures, machine learning, and big data analytics. You'll learn to analyze, interpret, and leverage vast amounts of data for decision-making and innovation."
+    },
+    {
+        "user_input": "Will I get practical experience in the Data Science program?",
+        "intent": "data_science_practical_experience",
+        "response": "Yes, the program has a strong emphasis on practical applications. Students engage in hands-on projects and real-world case studies."
+    },
+    {
+        "user_input": "What kind of career opportunities are available after completing this program?",
+        "intent": "data_science_career_opportunities",
+        "response": "Graduates of this program are highly sought after by industries across various sectors. The program aims to create professionals who can transform data into actionable insights, driving technological advancements and business strategies."
+    },
+    {
+        "user_input": "What is the main goal of the Data Science B.Tech program?",
+        "intent": "data_science_program_goal",
+        "response": "The primary goal of the B.Tech in Computer Science and Engineering with Data Science specialization is to create professionals who can transform data into actionable insights, driving technological advancements and business strategies."
+    },
+    {
+        "user_input": "What career paths are open to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "This program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms by providing a strong foundation in Computer Science and Applications, as well as problem-solving and programming skills."
+    },
+    {
+        "user_input": "Does the program help develop skills beyond just coding?",
+        "intent": "skill_development",
+        "response": "Yes, the program equips students with analytical, design, development, and soft skills to find innovative solutions to real-world problems. It also focuses on fostering collaboration with industry and professional societies."
+    },
+    {
+        "user_input": "Are there opportunities to learn about entrepreneurship in this program?",
+        "intent": "entrepreneurship_focus",
+        "response": "The program aims to inculcate entrepreneurship and managerial skills, along with teamwork abilities. This is achieved through the demonstration of good analytical, design, and implementation skills, ultimately contributing to the betterment of individuals and society."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program aims to produce graduates who are ethical, socially responsible, and committed to lifelong learning in order to fulfill their personal and professional goals."
+    },
+    {
+        "user_input": "Will I get practical experience working with others?",
+        "intent": "teamwork_skills",
+        "response": "The program emphasizes teamwork, analytical, design, and implementation skills, all of which contribute to effective collaboration and problem-solving in team settings. It also trains students to work with industry and professional societies."
+    },
+    {
+        "user_input": "I'm curious about what the program outcomes are. Where can I find more information?",
+        "intent": "locate_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details regarding the specific learning outcomes of this program. This section provides comprehensive information on what students will achieve upon completion."
+    },
+    {
+        "user_input": "Does this program have specific outcomes? If so, where can I find them listed?",
+        "intent": "confirm_and_locate_outcomes",
+        "response": "Yes, this program has specific learning outcomes. You can find them detailed in the 'Common Programme Outcomes' section of this brochure."
+    },
+    {
+        "user_input": "Where can I learn about the goals students achieve by completing this program?",
+        "intent": "understand_programme_goals",
+        "response": "The 'Common Programme Outcomes' section provides a detailed overview of the knowledge, skills, and abilities you will gain by completing this program. Please consult that section for more information."
+    },
+    {
+        "user_input": "Are the program outcomes listed somewhere in this brochure?",
+        "intent": "verify_outcome_location",
+        "response": "Yes, information about the program outcomes can be found in the 'Common Programme Outcomes' section. Please refer to that section for details."
+    },
+    {
+        "user_input": "I want to know what I'll be able to do after finishing this program. Where should I look?",
+        "intent": "identify_post_programme_abilities",
+        "response": "The 'Common Programme Outcomes' section outlines the skills and knowledge you will acquire upon completion of this program. Consult this section to understand what you'll be able to achieve."
+    },
+    {
+        "user_input": "What skills will I gain related to data analysis?",
+        "intent": "data_analysis_skills",
+        "response": "You will learn to apply data science principles, methodologies, and tools to analyze large, complex datasets. This will enable you to extract meaningful insights and make data-driven decisions in various contexts."
+    },
+    {
+        "user_input": "Can you give me examples of the data-centric techniques I'll be learning?",
+        "intent": "data_centric_techniques",
+        "response": "The program will equip you with diverse data-centric techniques, including machine learning, data mining, and statistical analysis. You will learn how to design, implement, and apply these techniques to solve real-world problems across various domains."
+    },
+    {
+        "user_input": "How will I learn to present my findings?",
+        "intent": "communication_skills",
+        "response": "You will develop effective communication skills, both orally and in writing, to communicate your findings to diverse audiences. The program emphasizes ethical communication and professional behavior in data science and research contexts."
+    },
+    {
+        "user_input": "Will I be able to apply what I learn to different fields?",
+        "intent": "cross_domain_application",
+        "response": "Yes, you will be able to apply the data-centric techniques you learn to solve real-world problems across various domains. The program emphasizes the versatility of data science skills and their applicability in diverse contexts."
+    },
+    {
+        "user_input": "What ethical considerations are covered in the program?",
+        "intent": "ethical_considerations",
+        "response": "The program emphasizes professional and ethical behavior in your work as data scientists and researchers. You will learn about ethical considerations related to data analysis, communication, and the application of data science techniques."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech in Computer Science and Engineering with a specialization in Data Science?",
+        "intent": "cse_data_science_career_options",
+        "response": "Graduates can pursue diverse career paths including roles as data scientists, machine learning engineers, data analysts, and big data engineers."
+    },
+    {
+        "user_input": "Which industries typically hire graduates with a Data Science specialization in Computer Science and Engineering?",
+        "intent": "cse_data_science_industry_hiring",
+        "response": "Graduates are hired across technology, finance, healthcare, and e-commerce sectors."
+    },
+    {
+        "user_input": "What skills will I gain that will help me get a job after graduating with a Data Science specialization?",
+        "intent": "cse_data_science_skills_gained",
+        "response": "You will be equipped to lead data-driven projects, develop innovative algorithms, and implement advanced data strategies in organizations."
+    },
+    {
+        "user_input": "Are there good job opportunities in Data Science and AI after graduation?",
+        "intent": "cse_data_science_job_growth",
+        "response": "Yes, your skill set opens doors to high-growth opportunities in data science and artificial intelligence fields, shaping the future of technology and business."
+    },
+    {
+        "user_input": "What will I be able to do in a company with this degree?",
+        "intent": "cse_data_science_job_roles",
+        "response": "You will be able to lead data-driven projects, develop innovative algorithms, and implement advanced data strategies."
+    },
+    {
+        "user_input": "How long is the Computer Engineering program?",
+        "intent": "program_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "eligibility_criteria",
+        "response": "To be eligible for the Computer Engineering program, you must have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "program_department",
+        "response": "This program is offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "Can you tell me about the Computer Engineering program's duration and eligibility?",
+        "intent": "program_details",
+        "response": "The Computer Engineering program is a 4-year program, and the eligibility requirement is completion of 10 + 2."
+    },
+    {
+        "user_input": "I'm interested in the Computer Engineering department. What programs do they offer and what are the requirements?",
+        "intent": "department_and_requirements",
+        "response": "The Computer Engineering department offers a 4-year program. The eligibility requirement for this program is 10 + 2."
+    },
+    {
+        "user_input": "What is the focus of the B.Tech in Computer Science and Engineering with a specialization in Cyber Security?",
+        "intent": "cybersecurity_focus",
+        "response": "The B.Tech in Computer Science and Engineering with a specialization in Cyber Security focuses on providing an in-depth education in combating digital threats. It integrates core computer science principles with advanced cyber security techniques, equipping students with the skills necessary to protect information infrastructure and combat cybercrime."
+    },
+    {
+        "user_input": "What specific skills will I gain in the Cyber Security specialization?",
+        "intent": "cybersecurity_skills",
+        "response": "In the Cyber Security specialization, you will gain expertise in areas such as network security, cryptography, and ethical hacking. The program also emphasizes practical experience in cutting-edge labs to reinforce these skills."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a Cyber Security specialization?",
+        "intent": "cybersecurity_career_paths",
+        "response": "This programme prepares graduates for critical roles in the tech-driven landscape, specifically in defending against evolving cyber threats and ensuring the security of digital assets across industries. You will be equipped to protect information infrastructure and combat cybercrime."
+    },
+    {
+        "user_input": "Does the program include hands-on learning?",
+        "intent": "cybersecurity_practical_experience",
+        "response": "Yes, the program includes practical experiences in cutting-edge labs. This hands-on approach supports the theoretical knowledge gained in network security, cryptography, and ethical hacking."
+    },
+    {
+        "user_input": "How does this program contribute to the security of businesses?",
+        "intent": "cybersecurity_industry_impact",
+        "response": "The programme shapes experts who are pivotal in defending against evolving cyber threats, ensuring the security of digital assets across industries. Graduates will be prepared to protect information infrastructure and combat cybercrime, contributing to the overall security posture of organizations."
+    },
+    {
+        "user_input": "What career paths are available to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "This program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms by providing a strong foundation in Computer Science and Applications, along with problem-solving and programming skills."
+    },
+    {
+        "user_input": "Does the program focus on practical skills and real-world problem-solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program equips students with analytical, design, and development skills, along with soft skills, to find innovative solutions to real-world problems in collaboration with industry and professional societies. It emphasizes applying computer science knowledge to solve practical challenges."
+    },
+    {
+        "user_input": "Does the program encourage entrepreneurship and teamwork?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "Yes, the program aims to inculcate entrepreneurship, managerial skills, and teamwork in students through the demonstration of good analytical, design, and implementation skills for the betterment of individuals and society at large."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "The program aims to produce graduates who are ethical, socially responsible, and lifelong learners, encouraging them to fulfill their goals while considering the broader impact of their work."
+    },
+    {
+        "user_input": "Will I be able to continue learning and developing my skills after graduation?",
+        "intent": "lifelong_learning",
+        "response": "The program fosters lifelong learning, equipping graduates with the ability and desire to continuously update their skills and knowledge throughout their careers. This is crucial for staying relevant and contributing effectively in the ever-evolving field of Computer Science and Applications."
+    },
+    {
+        "user_input": "Where can I find information about the programme outcomes?",
+        "intent": "find_programme_outcomes",
+        "response": "Please refer to the section titled \"Common Programme Outcomes\" for details regarding the programme outcomes. You can find it within this document."
+    },
+    {
+        "user_input": "What are the common programme outcomes for this programme?",
+        "intent": "explain_common_programme_outcomes",
+        "response": "The specific programme outcomes are detailed in the \"Common Programme Outcomes\" section of this document. Please consult that section for a comprehensive overview."
+    },
+    {
+        "user_input": "I'm interested in learning about the results graduates achieve after completing the programme. Where can I find this information?",
+        "intent": "graduate_achievement_info",
+        "response": "Information about graduate achievements and programme outcomes can be found in the \"Common Programme Outcomes\" section. Please review that section for details."
+    },
+    {
+        "user_input": "Does this brochure list the intended results of the program?",
+        "intent": "confirm_programme_results_listing",
+        "response": "Yes, the intended results of the program are described in the \"Common Programme Outcomes\" section. Please refer to that part of the brochure."
+    },
+    {
+        "user_input": "Where in this brochure are the programme goals and expectations outlined?",
+        "intent": "programme_goals_location",
+        "response": "The programme goals and expectations, also known as programme outcomes, are detailed in the \"Common Programme Outcomes\" section. Please consult that section for more information."
+    },
+    {
+        "user_input": "Can you give me examples of research areas or societal issues this program addresses?",
+        "intent": "cybersecurity_research_areas",
+        "response": "This program equips you to experiment with programming concepts and develop new ideas aimed at addressing research and societal issues specifically within the fields of cybersecurity and social network security."
+    },
+    {
+        "user_input": "How does the program address data security in the context of IoT and AI?",
+        "intent": "data_security_iot_ai",
+        "response": "The program focuses on analyzing and developing secure methods for storing, transmitting, and processing the vast amounts of data generated by the Internet of Things and artificial intelligence. This includes the efficient design of systems using intrusion detection and prevention systems, cryptography, and physical security for IT infrastructure. The ultimate goal is to create usable systems that are reliable and efficient."
+    },
+    {
+        "user_input": "What security technologies and approaches will I learn in this program?",
+        "intent": "security_technologies_learned",
+        "response": "You will learn standard and advanced security algorithms, as well as secure coding concepts, practices, and strategies. These will enable you to develop sustainable products using AI-based technology, ultimately delivering high-quality solutions for business, education, and e-trading."
+    },
+    {
+        "user_input": "Will I learn about intrusion detection and prevention?",
+        "intent": "intrusion_detection_prevention",
+        "response": "Yes, the program covers the efficient design of systems that includes intrusion detection and prevention systems as part of securing data within the context of the Internet of Things and Artificial Intelligence."
+    },
+    {
+        "user_input": "Does the program cover how to develop secure and reliable software?",
+        "intent": "secure_software_development",
+        "response": "Yes, the program covers how to specify, design, develop, test and maintain usable systems that behave reliably and efficiently, ensuring they are secure."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech in Computer Science and Engineering specializing in Cyber Security?",
+        "intent": "cybersecurity_career_options",
+        "response": "Graduates with a B.Tech in Computer Science and Engineering specializing in Cyber Security can pursue careers as cyber security analysts, ethical hackers, security architects, and information security managers."
+    },
+    {
+        "user_input": "Which industries typically hire graduates with a Cyber Security specialization?",
+        "intent": "cybersecurity_industry_demand",
+        "response": "Graduates with this specialization find opportunities across a broad spectrum of industries, including technology, finance, government, and healthcare, where safeguarding data and digital infrastructure is paramount."
+    },
+    {
+        "user_input": "Does this program prepare me for real-world cyber security problems?",
+        "intent": "cybersecurity_skill_development",
+        "response": "Yes, this program equips you with the expertise to tackle complex security challenges and lead efforts in protecting against cyber threats and vulnerabilities."
+    },
+    {
+        "user_input": "What is the role of a security architect after graduating from this program?",
+        "intent": "security_architect_role",
+        "response": "The program prepares graduates for roles such as security architects, where they will be responsible for designing and implementing secure network and computer systems. They will play a crucial role in protecting organizations against cyber threats."
+    },
+    {
+        "user_input": "Is this degree focused on offensive or defensive security?",
+        "intent": "cybersecurity_focus",
+        "response": "The B.Tech in Computer Science and Engineering with a specialization in Cyber Security equips graduates with the expertise to tackle complex security challenges and lead efforts in protecting against cyber threats and vulnerabilities, suggesting a focus on both offensive (e.g., ethical hacking) and defensive security measures."
+    },
+    {
+        "user_input": "How long is the Computer Engineering program?",
+        "intent": "programme_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "admission_eligibility",
+        "response": "To be eligible for the Computer Engineering program, you need to have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this programme?",
+        "intent": "programme_department",
+        "response": "This is a Computer Engineering programme offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "Can you tell me more about the Computer Engineering program's duration and eligibility?",
+        "intent": "programme_details",
+        "response": "The Computer Engineering program is a 4-year program, and the eligibility requirement is completion of 10 + 2."
+    },
+    {
+        "user_input": "Is this program related to Computer Engineering?",
+        "intent": "programme_confirmation",
+        "response": "Yes, this program is specifically offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "What is a B.Tech in Electronics & Communication Engineering (ECE) about?",
+        "intent": "ece_program_overview",
+        "response": "A B.Tech in Electronics & Communication Engineering (ECE) is an undergraduate programme focused on electronics and communication systems. It provides a solid foundation in electrical engineering, signal processing, telecommunications, and digital systems through a blend of theoretical knowledge and practical application."
+    },
+    {
+        "user_input": "What kind of knowledge and skills will I gain in the ECE program?",
+        "intent": "ece_skills_acquired",
+        "response": "The ECE program equips students with a solid foundation in electrical engineering, signal processing, telecommunications, and digital systems. You will also gain essential knowledge of electronic device operation, circuit design, and the principles underlying modern communication technologies."
+    },
+    {
+        "user_input": "Does the ECE program focus on both theory and practical application?",
+        "intent": "ece_theory_vs_practice",
+        "response": "Yes, the ECE program curriculum is designed to blend theoretical knowledge with practical application, ensuring a comprehensive understanding of the subject matter."
+    },
+    {
+        "user_input": "What are some of the core subjects covered in the ECE curriculum?",
+        "intent": "ece_core_subjects",
+        "response": "The ECE curriculum covers the essentials of electronic device operation, circuit design, and the principles underlying modern communication technologies. It also includes electrical engineering, signal processing, telecommunications and digital systems."
+    },
+    {
+        "user_input": "Is the ECE program suitable for students interested in modern communication technologies?",
+        "intent": "ece_relevance_to_communication",
+        "response": "Yes, the ECE program is specifically designed for students interested in delving into the realms of electronics and communication systems, covering the principles underlying modern communication technologies."
+    },
+    {
+        "user_input": "What career paths are available to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "This program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms. It equips you with a strong foundation in Computer Science and Applications, along with problem-solving and programming skills to achieve these goals."
+    },
+    {
+        "user_input": "Does the program focus on practical skills and real-world problem-solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program equips students with analytical, design, development, and soft skills to find innovative solutions to real-world problems in collaboration with industry and professional societies. This hands-on approach ensures you are ready to tackle practical challenges."
+    },
+    {
+        "user_input": "Are entrepreneurship and teamwork emphasized in the curriculum?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "The program inculcates entrepreneurship, managerial skills, and teamwork through the demonstration of good analytical, design, and implementation skills. This focus aims to benefit individuals and society at large by fostering innovation and collaboration."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program aims to produce graduates who are ethical, socially responsible, and lifelong learners. This commitment ensures that graduates are prepared to contribute positively to society and adapt to evolving challenges throughout their careers."
+    },
+    {
+        "user_input": "Will this program prepare me to continue learning throughout my career?",
+        "intent": "lifelong_learning",
+        "response": "The program is designed to produce graduates who are lifelong learners, ensuring they can fulfill their goals and adapt to the ever-changing landscape of Computer Science and Applications. The curriculum fosters a commitment to continuous improvement and professional development."
+    },
+    {
+        "user_input": "I see a reference to 'Common Programme Outcomes'. Where can I find more information about those?",
+        "intent": "find_common_programme_outcomes",
+        "response": "The brochure indicates that details about the Common Programme Outcomes can be found in the section specifically labeled '[Common Programme Outcomes]'. Please refer to that section for further information."
+    },
+    {
+        "user_input": "What are the general learning objectives for programs at this university?",
+        "intent": "general_learning_objectives",
+        "response": "The document refers to '[Common Programme Outcomes]'. This suggests a shared set of learning objectives across multiple programs. Please consult the '[Common Programme Outcomes]' section for a detailed list of these objectives."
+    },
+    {
+        "user_input": "Are the programme outcomes the same for all programmes?",
+        "intent": "programme_outcome_similarity",
+        "response": "The reference to '[Common Programme Outcomes]' implies that there are shared outcomes across multiple programmes. To understand the extent of commonality and any programme-specific outcomes, please refer to the '[Common Programme Outcomes]' section."
+    },
+    {
+        "user_input": "Where can I find a list of the skills and knowledge I will gain upon completing a programme?",
+        "intent": "skills_and_knowledge_list",
+        "response": "The brochure directs you to the '[Common Programme Outcomes]' section. This section likely contains a list of the skills, knowledge, and competencies you can expect to acquire upon completing a program. Please consult that section for a detailed breakdown."
+    },
+    {
+        "user_input": "Does the university have a set of standardized outcomes for all their programmes?",
+        "intent": "standardized_programme_outcomes",
+        "response": "The text mentions '[Common Programme Outcomes]', suggesting a standardized set of outcomes. The linked section should elaborate on these common outcomes and provide further context. Please refer to the '[Common Programme Outcomes]' section for details."
+    },
+    {
+        "user_input": "What specific skills will I gain in VLSI and embedded systems design?",
+        "intent": "vlsi_embedded_skills",
+        "response": "This program focuses on equipping you with the domain-specific skill set necessary for the design and analysis of components in VLSI (Very-Large-Scale Integration) and embedded systems. You'll learn to apply this knowledge practically in real-world applications."
+    },
+    {
+        "user_input": "Will I learn about networking and communication systems?",
+        "intent": "networking_communication_systems",
+        "response": "Yes, the program will help you demonstrate technical competency and utilize appropriate techniques in the development of networking and advanced communication systems. You'll gain practical experience in realizing these systems."
+    },
+    {
+        "user_input": "Can I apply electronics and communication engineering concepts to signal and image processing?",
+        "intent": "signal_image_processing",
+        "response": "Absolutely. You will learn to apply the fundamental concepts of electronics and communication engineering to design various components and systems. These systems will have applications in signal processing, image processing, and process control systems."
+    },
+    {
+        "user_input": "What kind of systems can I design with the knowledge from this program?",
+        "intent": "system_design_applications",
+        "response": "You'll be able to design a variety of systems, including those used for signal processing, image processing, and process control. The curriculum covers the fundamental concepts of electronics and communication engineering needed for these applications."
+    },
+    {
+        "user_input": "Does the program focus on practical applications of electronics and communication engineering?",
+        "intent": "practical_application_emphasis",
+        "response": "Yes, the program is designed to help you apply fundamental concepts of electronics and communication engineering to design components and systems for real-world applications. This includes signal processing, image processing, and process control systems, ensuring you gain practical skills."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech in ECE?",
+        "intent": "ece_career_opportunities",
+        "response": "A B.Tech in ECE opens doors to various roles across several sectors. You could work as an Electronics Engineer, Communication Engineer, Network Systems Analyst, or Embedded Systems Developer. These opportunities exist in telecommunications, IT, consumer electronics, and healthcare technology."
+    },
+    {
+        "user_input": "Is there a good job market for ECE graduates?",
+        "intent": "ece_job_market_outlook",
+        "response": "Yes, the demand for ECE professionals is strong and expected to grow. This is due to ongoing technological advancements and the increasing dependence on electronic devices and communication networks across various industries."
+    },
+    {
+        "user_input": "What fields can I work in with an ECE degree?",
+        "intent": "ece_industry_sectors",
+        "response": "With a B.Tech in ECE, you can find opportunities in sectors like telecommunications, information technology (IT), consumer electronics, and healthcare technology. Your skills will be relevant in any industry that relies on electronics and communication systems."
+    },
+    {
+        "user_input": "Can I pursue further studies after my B.Tech in ECE?",
+        "intent": "ece_further_studies",
+        "response": "Yes, you can pursue further studies such as an M.Tech or Ph.D. These advanced degrees can lead to research and academic positions, allowing you to deepen your knowledge and expertise in specialized areas of ECE."
+    },
+    {
+        "user_input": "Does an ECE degree help me innovate in technology?",
+        "intent": "ece_innovation_potential",
+        "response": "Absolutely. A B.Tech in ECE equips you with the skills necessary to innovate and contribute to the future of technology. The curriculum provides a strong foundation for developing new electronic devices, communication systems, and other technological advancements."
+    },
+    {
+        "user_input": "How long does the Computer Engineering program last?",
+        "intent": "ce_program_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "ce_program_eligibility",
+        "response": "To be eligible for the Computer Engineering program, you must have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "program_department",
+        "response": "This program is offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "Can you tell me about the Computer Engineering program's duration and eligibility?",
+        "intent": "ce_program_details",
+        "response": "The Computer Engineering program is a 4-year program. To be eligible, you need to have completed 10 + 2."
+    },
+    {
+        "user_input": "I'm interested in Computer Engineering. What are the basic details of the program?",
+        "intent": "ce_program_overview",
+        "response": "The Computer Engineering program is a 4-year program offered by the Computer Engineering department. The eligibility criteria is completion of 10 + 2."
+    },
+    {
+        "user_input": "What specialization options are available within the B.Tech Computer Science and Engineering program?",
+        "intent": "cse_specialization_options",
+        "response": "The B.Tech in Computer Science and Engineering (Hons.) offers specialization certifications. Based on the text, there are specializations in Data Analytics, and AI&ML. The Data Analytics specialization focuses on the end-to-end data analytics workflow. Selecting CSE in data science with this industry embedded certification will lead to a degree of B. Tech-CSE-DS (Hons.) with Google Cloud Specialization in Data Analytics. Selecting CSE in AI&ML along with this industry embedded certification will lead to a degree of B. Tech-CSE-AIML (Hons.) with Google Cloud Specialization in Data Analytics."
+    },
+    {
+        "user_input": "What is the focus of the Data Analytics specialization?",
+        "intent": "data_analytics_focus",
+        "response": "The Data Analytics specialization within the B.Tech Computer Science and Engineering (Hons.) program focuses on real-world application and enables students to master the end-to-end data analytics workflow—from data collection and preprocessing to visualization and interpretation. The program covers computer science fundamentals with statistical modeling, machine learning, and big data technologies. It also provides exposure to data analytics workflows and scalable cloud-based data solutions through a collaboration with Google Cloud."
+    },
+    {
+        "user_input": "Does the program have any industry collaborations?",
+        "intent": "industry_collaboration",
+        "response": "Yes, the B.Tech Computer Science and Engineering (Hons.) program has a collaboration with Google Cloud. This collaboration allows students to gain deep exposure to data analytics workflows and scalable cloud-based data solutions, preparing them to work on real-world challenges across diverse industries."
+    },
+    {
+        "user_input": "Are the industry embedded certification courses mandatory?",
+        "intent": "certification_course_mandatory",
+        "response": "No, all industry embedded certification courses are optional for students."
+    },
+    {
+        "user_input": "What degree will I receive if I specialize in Data Analytics with the Google Cloud certification?",
+        "intent": "data_analytics_degree",
+        "response": "If you select CSE in data science with the industry embedded Google Cloud certification in Data Analytics, you will be awarded the degree of B. Tech-CSE-DS (Hons.) with Google Cloud Specialization in Data Analytics."
+    },
+    {
+        "user_input": "What kind of career paths can I pursue after graduating from this program?",
+        "intent": "career_opportunities",
+        "response": "This program is designed to prepare graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial ventures, and consulting firms. You will gain a strong foundation in Computer Science and Applications, along with problem-solving and programming skills to help you succeed in these areas."
+    },
+    {
+        "user_input": "Does the program focus on practical skills and real-world problem-solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program emphasizes equipping students with analytical, design, and development skills, as well as soft skills, to find innovative solutions to real-world problems. Collaboration with industry and professional societies is also integrated into the curriculum."
+    },
+    {
+        "user_input": "Are there opportunities to develop entrepreneurial and managerial skills?",
+        "intent": "entrepreneurship_management_skills",
+        "response": "The program aims to inculcate entrepreneurship, managerial skills, and teamwork in students. This is achieved through the demonstration of good analytical, design, and implementation skills, with the goal of benefiting both individuals and society."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program strives to produce graduates who are ethical, socially responsible, and lifelong learners. This commitment ensures that graduates are prepared to contribute positively to society and adapt to evolving challenges throughout their careers."
+    },
+    {
+        "user_input": "Will I learn teamwork skills in this program?",
+        "intent": "teamwork_skills",
+        "response": "Yes, the program cultivates teamwork skills in students. Students will be able to work in a team and demonstrate good analytical, design and implementation skills for the betterment of individuals and society at large."
+    },
+    {
+        "user_input": "Where can I find information about the specific outcomes of this program?",
+        "intent": "find_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details on the program's specific outcomes. The provided text indicates that relevant information can be found there."
+    },
+    {
+        "user_input": "Are the programme outcomes listed somewhere else in this brochure?",
+        "intent": "programme_outcomes_reference",
+        "response": "Yes, the programme outcomes are detailed in the section labeled 'Common Programme Outcomes' within this brochure. The text directs you to that specific section for further information."
+    },
+    {
+        "user_input": "What are the common program outcomes?",
+        "intent": "common_programme_outcomes_details",
+        "response": "The text directs you to a section titled 'Common Programme Outcomes'. Please consult that section for a comprehensive list and description of the program outcomes."
+    },
+    {
+        "user_input": "I'm interested in understanding the expected results of this program. Where should I look?",
+        "intent": "expected_program_results",
+        "response": "The document indicates that information regarding the expected results, or programme outcomes, can be found in the 'Common Programme Outcomes' section. Reviewing that section will provide the details you seek."
+    },
+    {
+        "user_input": "How are the programme outcomes defined for this course?",
+        "intent": "programme_outcomes_definition",
+        "response": "The programme outcomes are defined in the 'Common Programme Outcomes' section of this brochure. This section should provide a detailed explanation of what students are expected to achieve upon completion of the program."
+    },
+    {
+        "user_input": "What kind of technologies will I be learning about in this program?",
+        "intent": "technology_focus",
+        "response": "This program emphasizes the ability to work with emerging technologies in computing, ensuring you are prepared for the forefront of the field."
+    },
+    {
+        "user_input": "Does the program offer practical experience, like internships?",
+        "intent": "industry_internship",
+        "response": "Yes, the program includes opportunities for industry internships and research projects to allow you to demonstrate engineering practices learned, providing real-world problem-solving experience."
+    },
+    {
+        "user_input": "Can I expect to tackle real-world problems during my studies?",
+        "intent": "real_world_problem_solving",
+        "response": "Absolutely. You will demonstrate engineering practice learned through industry internship and research projects to solve live problems in various domains."
+    },
+    {
+        "user_input": "What kind of domains can I expect to work in?",
+        "intent": "domain_application",
+        "response": "The program prepares you to solve live problems in various domains, leveraging engineering practices learned during industry internships and research projects. The specific domains will depend on the internship and research opportunities available."
+    },
+    {
+        "user_input": "How will I apply what I learn in the classroom to real-world scenarios?",
+        "intent": "practical_application",
+        "response": "The program is designed to connect classroom learning with real-world application through industry internships and research projects. You will demonstrate engineering practice learned to solve live problems in various domains."
+    },
+    {
+        "user_input": "How much training will I receive, and who provides it?",
+        "intent": "training_hours_and_trainers",
+        "response": "You will receive over 350 hours of on-campus training delivered by Google-certified trainers."
+    },
+    {
+        "user_input": "Does the program include real-world projects or competitions?",
+        "intent": "project_and_hackathon_integration",
+        "response": "Yes, the program incorporates live projects and hackathons designed in collaboration with Google."
+    },
+    {
+        "user_input": "Who designed the curriculum for this program?",
+        "intent": "curriculum_design_source",
+        "response": "The curriculum has been designed by Google."
+    },
+    {
+        "user_input": "Are there opportunities for internships or pre-placement offers?",
+        "intent": "ppo_and_internship_opportunities",
+        "response": "Yes, the program offers pre-placement offers (PPO) and internship opportunities at top-tier IT firms."
+    },
+    {
+        "user_input": "Will I get hands-on experience with Google tools and technologies?",
+        "intent": "practical_application_google_environment",
+        "response": "Yes, the program provides practical applications using a Google-built lab environment."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech in CSE with a Google Cloud specialization?",
+        "intent": "cse_google_cloud_career_options",
+        "response": "Graduates of the B.Tech-CSE-DS (Hons.) / B.Tech-CSE-AIML (Hons.) program with a Google Cloud specialization are well-prepared for data-driven roles in tech and business domains. Some potential job titles include: Data Scientist, BI & Analytics Developer (BigQuery/Looker Studio), Cloud Data Analyst, Architect and Engineer, Business Intelligence Developer, Statistician / Quantitative Analyst."
+    },
+    {
+        "user_input": "If I specialize in Google Cloud, will I be limited to only cloud-related jobs?",
+        "intent": "google_cloud_specialization_job_scope",
+        "response": "While the Google Cloud specialization prepares you for roles like Cloud Data Analyst, Architect, and Engineer, the skills you gain are broadly applicable to data-driven roles. You'll also be qualified for positions such as Data Scientist, BI & Analytics Developer (BigQuery/Looker Studio), Business Intelligence Developer, and Statistician / Quantitative Analyst, which may involve cloud technologies but are not exclusively cloud-focused."
+    },
+    {
+        "user_input": "What does 'BI & Analytics Developer (BigQuery/Looker Studio)' mean?",
+        "intent": "bi_analytics_developer_definition",
+        "response": "A BI & Analytics Developer (BigQuery/Looker Studio) uses tools like Google BigQuery and Looker Studio to develop business intelligence solutions. This involves extracting, transforming, and loading data (ETL), creating data models, and building dashboards and reports to help businesses make data-driven decisions. This role is a potential career path for graduates of the B.Tech-CSE-DS (Hons.) / B.Tech-CSE-AIML (Hons.) program with a Google Cloud specialization."
+    },
+    {
+        "user_input": "Is the B.Tech-CSE-DS or the B.Tech-CSE-AIML degree better for a career as a Data Scientist?",
+        "intent": "cse_ds_vs_cse_aiml_data_scientist",
+        "response": "The brochure states that graduates of either the B.Tech-CSE-DS (Hons.) or B.Tech-CSE-AIML (Hons.) program with a Google Cloud specialization are well-prepared for data-driven roles, including Data Scientist. The choice between the two might depend on your specific interests, as CSE-DS focuses more on general data science principles, while CSE-AIML emphasizes artificial intelligence and machine learning techniques. Both can lead to a Data Scientist role."
+    },
+    {
+        "user_input": "What kind of background do I need to be a Statistician or Quantitative Analyst after graduating?",
+        "intent": "statistician_quantitative_analyst_background",
+        "response": "The B.Tech-CSE-DS (Hons.) / B.Tech-CSE-AIML (Hons.) program with Google Cloud specialization provides a strong foundation for becoming a Statistician or Quantitative Analyst. These roles require a solid understanding of statistical methods, data analysis techniques, and mathematical modeling. The program equips you with these skills, especially when combined with the Google Cloud specialization, which enhances your ability to work with large datasets and advanced analytical tools."
+    },
+    {
+        "user_input": "How long does the Computer Engineering program take to complete?",
+        "intent": "ce_program_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "ce_eligibility_criteria",
+        "response": "To be eligible for the Computer Engineering program, you need to have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "program_department",
+        "response": "This program is offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "If I have finished my 12th grade, can I apply for the Computer Engineering program?",
+        "intent": "ce_application_eligibility",
+        "response": "Yes, completion of 10 + 2 (high school) is the stated eligibility criteria for the Computer Engineering program."
+    },
+    {
+        "user_input": "Can you tell me the duration and eligibility requirements for the Computer Engineering course?",
+        "intent": "ce_duration_and_eligibility",
+        "response": "The Computer Engineering program is a 4-year course, and the eligibility requirement is completion of 10 + 2 (high school)."
+    },
+    {
+        "user_input": "What is the B.Tech-CSE-AIML (Hons.) program about?",
+        "intent": "program_overview",
+        "response": "The B.Tech-CSE-AIML (Hons.) program with Specialization certification in Generative AI with IBM is a future-focused program designed to equip students with the knowledge and skillset to create intelligent systems that learn, adapt, and revolve around the Artificial Intelligence ecosystem."
+    },
+    {
+        "user_input": "What specific areas of AI does the curriculum cover?",
+        "intent": "curriculum_details",
+        "response": "The curriculum offers the paradigm of deep learning, natural language processing, robotics, and data-driven modeling to enable innovation at the cutting edge of technology powered by IBM."
+    },
+    {
+        "user_input": "Does the program offer any specialization?",
+        "intent": "specialization_options",
+        "response": "Yes, the program offers a specialization in Generative AI in collaboration with IBM."
+    },
+    {
+        "user_input": "Will I get practical experience in the program?",
+        "intent": "hands_on_experience",
+        "response": "Yes, students gain hands-on industrial experience at a Lab Setup by IBM for developing scalable, and ethical AI solutions."
+    },
+    {
+        "user_input": "What is the focus of the Generative AI specialization with IBM?",
+        "intent": "generative_ai_focus",
+        "response": "The Generative AI specialization with IBM focuses on developing scalable and ethical AI solutions."
+    },
+    {
+        "user_input": "What kind of careers can I pursue after graduating from this program?",
+        "intent": "career_opportunities",
+        "response": "This program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms by providing a strong foundation in Computer Science and Applications, as well as problem-solving and programming skills."
+    },
+    {
+        "user_input": "Does the program help students develop problem-solving skills?",
+        "intent": "problem_solving_skills",
+        "response": "Yes, the program emphasizes problem-solving skills. It aims to equip students with analytical, design, and development skills to find innovative solutions to real-world problems in collaboration with industry and professional societies. Graduates will have a strong foundation in Computer Science and Applications and programming skills."
+    },
+    {
+        "user_input": "Does this program encourage entrepreneurship?",
+        "intent": "entrepreneurship_support",
+        "response": "Yes, the program aims to inculcate entrepreneurship and managerial skills in students. It demonstrates good analytical, design, and implementation skills for the betterment of individuals and society, encouraging entrepreneurial pursuits."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program aims to produce graduates who are ethical, socially responsible, and lifelong learners, enabling them to fulfill their goals while contributing positively to society."
+    },
+    {
+        "user_input": "Will I learn teamwork skills in this program?",
+        "intent": "teamwork_skills",
+        "response": "Yes, the program cultivates teamwork skills in students. Students will be able to work in a team and demonstrate good analytical, design and implementation skills for the betterment of individuals and society at large."
+    },
+    {
+        "user_input": "Where can I find information about the learning outcomes for this program?",
+        "intent": "locate_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details on the learning outcomes associated with this program. A link to this section should be available within this document."
+    },
+    {
+        "user_input": "Are the program outcomes listed somewhere else?",
+        "intent": "confirm_outcome_location",
+        "response": "Yes, the program outcomes are detailed in the 'Common Programme Outcomes' section. Please consult that section for a comprehensive overview."
+    },
+    {
+        "user_input": "I'm interested in understanding what I'll achieve by completing this program. Where should I look?",
+        "intent": "understand_programme_achievements",
+        "response": "The 'Common Programme Outcomes' section outlines the specific skills, knowledge, and abilities you'll develop by successfully completing this program. It's the best place to get a clear understanding of your potential achievements."
+    },
+    {
+        "user_input": "Does this program share its outcomes with other programs?",
+        "intent": "shared_programme_outcomes",
+        "response": "The program outcomes are listed in the 'Common Programme Outcomes' section, which implies that these outcomes might be shared across multiple programs. Please review that section to understand the specific outcomes applicable to this program."
+    },
+    {
+        "user_input": "Where do I find the common program outcomes?",
+        "intent": "find_common_outcomes_section",
+        "response": "You can find the program outcomes in the section labeled 'Common Programme Outcomes'. It should be easily accessible within this brochure."
+    },
+    {
+        "user_input": "What kind of technologies will I be working with in this program?",
+        "intent": "emerging_technologies",
+        "response": "The program focuses on providing you with the ability to work with emerging technologies in computing, ensuring you are prepared for the latest advancements in the field."
+    },
+    {
+        "user_input": "Does the program offer any opportunities to gain real-world experience?",
+        "intent": "industry_experience",
+        "response": "Yes, the program includes opportunities to demonstrate engineering practices learned through industry internships and research projects. This allows you to solve real-world problems in various domains."
+    },
+    {
+        "user_input": "Can I use what I learn in this program to solve practical problems?",
+        "intent": "problem_solving_skills",
+        "response": "Absolutely. A key outcome of the program is the ability to apply engineering practices acquired through industry internships and research projects to effectively solve live problems across different domains."
+    },
+    {
+        "user_input": "Will I be involved in any research during the program?",
+        "intent": "research_opportunities",
+        "response": "Yes, the program provides opportunities to participate in research projects, allowing you to apply your engineering knowledge to solve real-world problems."
+    },
+    {
+        "user_input": "What types of industries can I expect to work in after graduating from this program?",
+        "intent": "career_domains",
+        "response": "The program prepares you to solve live problems in various domains, implying you will be prepared to enter many industries. You will gain engineering practice through industry internships and research projects."
+    },
+    {
+        "user_input": "What is the focus of the Generative AI specialization with IBM?",
+        "intent": "specialization_focus",
+        "response": "The specialization focuses on next-generation AI capabilities, including foundation models, neural networks, large language models (LLMs), and synthetic data generation. It explores real-world applications of generative AI in fields like content creation, healthcare, design, and automation."
+    },
+    {
+        "user_input": "What kind of learning experiences are included in the program?",
+        "intent": "learning_experiences",
+        "response": "The program includes Industry Visits, Webinars, IBM Day at Campus, access to IBM tools and APIs, and project-based learning in advanced AI labs."
+    },
+    {
+        "user_input": "Will I receive a certification upon completing this specialization?",
+        "intent": "certification_opportunities",
+        "response": "Eligible students will have the opportunity to earn a joint certification from IBM and Karnavati University upon completion of the course. All certification courses are optional."
+    },
+    {
+        "user_input": "What degree will I receive if I select the B.Tech-CSE-AIML program with IBM certification?",
+        "intent": "degree_awarded",
+        "response": "Students who select the B.Tech-CSE-AIML program along with the IBM certification will be awarded the degree of B.Tech-CSE-AIML (Hons.) in Generative AI with IBM."
+    },
+    {
+        "user_input": "What are some real-world applications that will be explored during the specialization?",
+        "intent": "real_world_applications",
+        "response": "The specialization explores real-world applications of generative AI in fields like content creation, healthcare, design, and automation."
+    },
+    {
+        "user_input": "How much hands-on training will I receive from IBM professionals?",
+        "intent": "ibm_training_hours",
+        "response": "You will receive over 300 hours of face-to-face training delivered by IBM professionals."
+    },
+    {
+        "user_input": "Where will the training take place?",
+        "intent": "training_location",
+        "response": "The training will be conducted at the on-campus IBM Centre of Excellence."
+    },
+    {
+        "user_input": "Will I get the chance to work with cutting-edge technologies like generative AI?",
+        "intent": "generative_ai_exposure",
+        "response": "Yes, you will have exposure to the IBM software lab for emerging technologies for business, specifically in the area of generative AI."
+    },
+    {
+        "user_input": "Is an internship guaranteed as part of the program?",
+        "intent": "internship_guarantee",
+        "response": "Yes, a 100% guaranteed internship and live projects are part of the program."
+    },
+    {
+        "user_input": "Will I learn to build and use LLM models?",
+        "intent": "llm_model_development",
+        "response": "Yes, you will learn to develop LLM models for solving real-life problems. IBM professionals will conduct lab sessions with use cases developed by IBM."
+    },
+    {
+        "user_input": "What kind of jobs can I get with the B.Tech-CSE-AIML (Hons.) program, especially if I specialize in Generative AI?",
+        "intent": "generative_ai_career_options",
+        "response": "Graduates with a specialization in Generative AI are well-prepared for roles at the cutting edge of technology. Specifically, you could pursue positions such as Generative AI Engineer, LLM Application Developer, or Conversational AI Designer. The program also provides a foundation for roles like AI/ML Ops Engineer and Synthetic Data Engineer, contributing to a broad range of opportunities."
+    },
+    {
+        "user_input": "I'm interested in cloud computing. Does the B.Tech-CSE-AIML program prepare me for cloud-related roles?",
+        "intent": "cloud_computing_career_path",
+        "response": "Yes, the B.Tech-CSE-AIML (Hons.) program, particularly with a specialization in Data Analytics, prepares you for cloud-related roles. One specific role mentioned is Cloud Data Engineer (GCP), indicating a focus on Google Cloud Platform. The program also supports roles such as AI/ML Ops Engineer (Vertex AI) which involves deploying and managing AI models in the cloud."
+    },
+    {
+        "user_input": "What is an AI/ML Ops Engineer, and how does the B.Tech-CSE-AIML program help me become one?",
+        "intent": "ai_ml_ops_engineer_role",
+        "response": "An AI/ML Ops Engineer is responsible for deploying, monitoring, and managing machine learning models in a production environment. The B.Tech-CSE-AIML (Hons.) program prepares you for this role, especially with the mention of AI/ML Ops Engineer (Vertex AI), which suggests training and experience with Google's Vertex AI platform. This role bridges the gap between data science and software engineering, ensuring AI models are scalable and reliable."
+    },
+    {
+        "user_input": "I'm curious about Data Science. Does the program offer any specific career paths within that field?",
+        "intent": "data_science_career_paths",
+        "response": "Yes, the B.Tech-CSE-AIML (Hons.) program opens doors to Data Science roles. One specific role mentioned is Data Scientist – Decision Intelligence, indicating a focus on using data to inform strategic decision-making within organizations. The program's emphasis on both AI and ML provides a strong foundation for a career in Data Science."
+    },
+    {
+        "user_input": "What is a Synthetic Data Engineer, and how does it relate to AI and ML?",
+        "intent": "synthetic_data_engineer_role",
+        "response": "A Synthetic Data Engineer is responsible for creating artificial data sets that mimic real-world data. This is valuable in AI and ML because it allows for training models when real data is scarce, sensitive, or biased. The B.Tech-CSE-AIML (Hons.) program recognizes this emerging field, preparing graduates to develop and utilize synthetic data for various AI applications."
+    },
+    {
+        "user_input": "How long is the Computer Engineering program?",
+        "intent": "program_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "eligibility_criteria",
+        "response": "To be eligible for the Computer Engineering program, you must have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "program_department",
+        "response": "This program is offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "I finished high school, can I apply for this program?",
+        "intent": "eligibility_confirmation",
+        "response": "Yes, having completed 10 + 2 makes you eligible to apply for the Computer Engineering program."
+    },
+    {
+        "user_input": "Can you tell me about the Computer Engineering program's duration?",
+        "intent": "program_duration_details",
+        "response": "The Computer Engineering program is a 4-year program. This is the standard duration for completing the degree."
+    },
+    {
+        "user_input": "What does the Computer Science and Engineering (Hons.) with specialization in Cyber Security program cover?",
+        "intent": "cyber_security_program_overview",
+        "response": "The B. Tech in Computer Science and Engineering (Hons.) with specialization in Cyber Security program prepares students to safeguard the digital world against complex cyber threats. The program is rooted in the fundamentals of computing while leveraging advanced cyber defense techniques, ethical hacking, and digital forensics."
+    },
+    {
+        "user_input": "Does the Cyber Security program have any industry collaborations?",
+        "intent": "cyber_security_industry_collaboration",
+        "response": "Yes, the program is in collaboration with Google Cloud. Students get to explore and deploy components of a secure Google Cloud solution through hands-on experience."
+    },
+    {
+        "user_input": "What specific Google Cloud technologies will I learn in the Cyber Security program?",
+        "intent": "google_cloud_technologies_covered",
+        "response": "Students will explore and deploy components of a secure Google Cloud solution, including Cloud Identity, Resource Manager, Identity and Access Management (IAM), Virtual Private Cloud firewalls, Cloud Load Balancing, Direct Peering, Carrier Peering, Cloud Interconnect, and VPC Service Controls. They will also learn to manage data encryption using Customer-Managed Encryption Keys (CMEK) and Customer-Supplied Encryption Keys (CSEK)."
+    },
+    {
+        "user_input": "What kind of hands-on experience will I get in the Cyber Security program?",
+        "intent": "cyber_security_hands_on_experience",
+        "response": "The program includes hands-on labs and real-world scenarios, encouraging students to apply their knowledge to solve contemporary security challenges. Students will deploy and audit security configurations, use tools like Secret Manager, Web Security Scanner, and Identity-Aware Proxy, and implement effective monitoring and auditing using platforms like Forseti and Cloud Logging."
+    },
+    {
+        "user_input": "What degree will I receive if I complete the Cyber Security program with the Google Cloud specialization?",
+        "intent": "cyber_security_degree_awarded",
+        "response": "Students who opt for this certification along with CSE in cyber security will be awarded the degree of B. Tech-CSE-Cyber Security (Hons.) with Google Cloud Specialization in Cyber Security."
+    },
+    {
+        "user_input": "What kind of career paths can I pursue after graduating from this program?",
+        "intent": "career_opportunities",
+        "response": "This program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms by providing a strong foundation in Computer Science and Applications, as well as problem-solving and programming skills."
+    },
+    {
+        "user_input": "Does the program focus on practical skills and real-world problem solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program equips students with analytical, design, and development skills, as well as soft skills, to find innovative solutions to real-world problems in collaboration with industry and professional societies."
+    },
+    {
+        "user_input": "Does the program encourage entrepreneurship and teamwork?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "The program aims to inculcate entrepreneurship, managerial skills, and teamwork in students through the demonstration of good analytical, design, and implementation skills for the betterment of individuals and society at large."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program aims to produce graduates who are ethical, socially responsible, and lifelong learners, enabling them to fulfill their goals while contributing positively to society."
+    },
+    {
+        "user_input": "Will I be prepared to continue learning and adapting after graduation?",
+        "intent": "lifelong_learning",
+        "response": "The program is designed to produce graduates who are lifelong learners, equipped to adapt to evolving challenges and opportunities throughout their careers. We aim to produce ethical and socially responsible graduates who continue to develop their skills."
+    },
+    {
+        "user_input": "Where can I find information about the general outcomes of this program?",
+        "intent": "find_common_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details on the general outcomes of this program. The document provides a comprehensive overview of what students are expected to achieve upon completion."
+    },
+    {
+        "user_input": "What are the overall goals of the program?",
+        "intent": "understand_programme_goals",
+        "response": "The overall goals of the program are detailed in the 'Common Programme Outcomes' section. Please consult that section for a comprehensive understanding of the program's objectives and what you will gain from it."
+    },
+    {
+        "user_input": "Are there any shared outcomes across all programs offered?",
+        "intent": "inquire_about_shared_outcomes",
+        "response": "Yes, information regarding the shared outcomes across programs can be found in the 'Common Programme Outcomes' section. This section outlines the skills, knowledge, and competencies that all graduates are expected to possess."
+    },
+    {
+        "user_input": "I'm interested in learning about the general results of this program, where should I look?",
+        "intent": "locate_programme_results",
+        "response": "The 'Common Programme Outcomes' section contains information regarding the general results or outcomes of this program. Please refer to that section for a complete overview."
+    },
+    {
+        "user_input": "Where can I read about the expected achievements of students in this program?",
+        "intent": "discover_expected_achievements",
+        "response": "You can find information regarding the expected achievements of students in the 'Common Programme Outcomes' section. This section details what students are expected to know, understand, and be able to do upon completing the program."
+    },
+    {
+        "user_input": "What kind of new technologies will I learn about in this program?",
+        "intent": "emerging_technologies",
+        "response": "The program focuses on providing you with the ability to work with emerging technologies in computing. While the specific technologies covered may evolve, the aim is to equip you with the skills to adapt to and utilize the latest advancements in the field."
+    },
+    {
+        "user_input": "Does the program offer any real-world experience?",
+        "intent": "industry_experience",
+        "response": "Yes, the program incorporates Engineering Practice learned through industry internships and research projects. This is designed to allow you to solve real-world problems in various domains."
+    },
+    {
+        "user_input": "Will I get to apply what I learn to actual problems?",
+        "intent": "practical_application",
+        "response": "Absolutely. A key outcome of the program is that you'll be able to demonstrate Engineering Practice learned through industry internships and research projects to solve live problems in various domains. This hands-on experience is a core part of the curriculum."
+    },
+    {
+        "user_input": "What industries can I expect to work in after graduation?",
+        "intent": "career_domains",
+        "response": "The program prepares you to solve live problems in various domains. The specific industries you might work in will depend on your chosen specializations and interests, but the skills you gain will be applicable across a broad range of sectors needing computing and engineering solutions."
+    },
+    {
+        "user_input": "How does the internship program work?",
+        "intent": "internship_details",
+        "response": "The program includes industry internships and research projects as a way to demonstrate Engineering Practice. These experiences are designed to give you practical experience in solving real-world problems in various domains. More specific details about the internship program, such as application processes and available placements, can be found in the program handbook or by contacting the program coordinator."
+    },
+    {
+        "user_input": "How much training will I receive and who will be teaching me?",
+        "intent": "training_hours_and_trainers",
+        "response": "You will receive over 350 hours of on-campus training delivered by Google-certified trainers."
+    },
+    {
+        "user_input": "Will I get hands-on experience, or is it mostly theory?",
+        "intent": "practical_experience",
+        "response": "The program offers practical experience with a Google-built in-lab environment, allowing you to apply your knowledge directly."
+    },
+    {
+        "user_input": "Who designed the course material?",
+        "intent": "curriculum_developer",
+        "response": "The curriculum is developed by Google, ensuring it is aligned with industry best practices."
+    },
+    {
+        "user_input": "Are there opportunities to work on real-world projects?",
+        "intent": "live_projects_and_hackathons",
+        "response": "Yes, the program includes Google-integrated live projects and hackathons, providing opportunities to apply your skills to real-world challenges."
+    },
+    {
+        "user_input": "What kind of job opportunities are available after completing the program?",
+        "intent": "placement_opportunities",
+        "response": "The program offers Placement Preparation Opportunities (PPO) and internships at top IT firms, enhancing your career prospects."
+    },
+    {
+        "user_input": "What kind of jobs can I get with the B. Tech-CSE-Cyber Security (Hons.) program with Google Cloud Specialization in Cyber Security?",
+        "intent": "cybersecurity_career_options",
+        "response": "Graduates of the B. Tech-CSE-Cyber Security (Hons.) program with Google Cloud Specialization in Cyber Security are prepared for a variety of high-demand roles in both national and international sectors. These include positions such as Cloud Information Security Analysts, Architects, and Engineers, Information Security/Cybersecurity Specialists, Security Operations Center (SOC) Analyst, Penetration Tester / Ethical Hacker, and DevSecOps Engineer."
+    },
+    {
+        "user_input": "Does the Cyber Security program with Google Cloud Specialization prepare me for international jobs?",
+        "intent": "international_cybersecurity_jobs",
+        "response": "Yes, the B. Tech-CSE-Cyber Security (Hons.) program with Google Cloud Specialization in Cyber Security prepares graduates for high-demand roles in both national and international sectors."
+    },
+    {
+        "user_input": "What is a SOC analyst and does this program prepare me to be one?",
+        "intent": "soc_analyst_preparation",
+        "response": "A Security Operations Center (SOC) Analyst is a cybersecurity professional who monitors and analyzes security events to protect an organization's digital assets. The B. Tech-CSE-Cyber Security (Hons.) program with Google Cloud Specialization in Cyber Security specifically lists SOC Analyst as one of the roles graduates are prepared for."
+    },
+    {
+        "user_input": "I'm interested in ethical hacking. Does this program offer training in penetration testing?",
+        "intent": "penetration_testing_training",
+        "response": "Yes, the B. Tech-CSE-Cyber Security (Hons.) program with Google Cloud Specialization in Cyber Security prepares graduates to become Penetration Testers / Ethical Hackers."
+    },
+    {
+        "user_input": "What are some cloud-related security jobs I can get after completing this program?",
+        "intent": "cloud_security_roles",
+        "response": "The B. Tech-CSE-Cyber Security (Hons.) program with Google Cloud Specialization in Cyber Security prepares graduates for roles such as Cloud Information Security Analysts, Cloud Information Security Architects, and Cloud Information Security Engineers."
+    },
+    {
+        "user_input": "How long does the Computer Engineering program last?",
+        "intent": "ce_program_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "ce_program_eligibility",
+        "response": "To be eligible for the Computer Engineering program, you need to have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department is responsible for the Computer Engineering program?",
+        "intent": "ce_program_department",
+        "response": "The Computer Engineering program is offered by the Computer Engineering department."
+    },
+    {
+        "user_input": "Can you tell me about the Computer Engineering program's duration and eligibility?",
+        "intent": "ce_program_details",
+        "response": "The Computer Engineering program is a 4-year program, and the eligibility requirement is completion of 10 + 2 (high school)."
+    },
+    {
+        "user_input": "I'm interested in Computer Engineering. What department should I contact, and how long is the program?",
+        "intent": "ce_program_contact_and_duration",
+        "response": "You should contact the Computer Engineering department. The program duration is 4 years."
+    },
+    {
+        "user_input": "What is the B. Tech Computer Science and Engineering (Hons.) program about?",
+        "intent": "cse_program_overview",
+        "response": "The B. Tech in Computer Science and Engineering (Hons.) program offers core computing fundamentals with advanced specializations designed to meet industry demands in the global digital economy. It focuses on training students to build scalable, secure, and innovative tech solutions."
+    },
+    {
+        "user_input": "Does the program offer any hands-on experience?",
+        "intent": "cse_practical_experience",
+        "response": "Yes, the program emphasizes hands-on projects, internships, and interdisciplinary learning to provide practical experience. The curriculum is designed based on international standards to ensure relevance and applicability."
+    },
+    {
+        "user_input": "What kind of specializations does the program offer?",
+        "intent": "cse_program_specializations",
+        "response": "The program offers advanced specializations designed to meet the industry demands of the rapidly evolving global digital economy. It includes advanced tracks in Fintech (in partnership with Paytm)."
+    },
+    {
+        "user_input": "What is the goal of the B. Tech Computer Science and Engineering (Hons.) program?",
+        "intent": "cse_program_goals",
+        "response": "The goal of the B. Tech Computer Science and Engineering (Hons.) program is to empower students to become future-ready tech-savvy leaders at national and international platforms by providing them with the skills to build scalable, secure, and innovative tech solutions."
+    },
+    {
+        "user_input": "Does the program have any industry partnerships?",
+        "intent": "cse_industry_partnerships",
+        "response": "Yes, the program has industry partnerships. For example, it includes advanced tracks in Fintech in partnership with Paytm."
+    },
+    {
+        "user_input": "What career paths are available to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "The program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms. The strong foundation in Computer Science and Applications, along with problem-solving and programming skills, enables graduates to excel in various roles within these sectors."
+    },
+    {
+        "user_input": "Does the program emphasize practical problem-solving skills?",
+        "intent": "practical_skills_emphasis",
+        "response": "Yes, the program equips students with analytical, design, and development skills to find innovative solutions to real-world problems. This is often done in collaboration with industry and professional societies, providing practical experience."
+    },
+    {
+        "user_input": "Are there opportunities to develop entrepreneurial and teamwork skills?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "The program aims to inculcate entrepreneurship, managerial skills, and teamwork in students. This is achieved through the demonstration of good analytical, design, and implementation skills, contributing to the betterment of individuals and society."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program aims to produce graduates who are ethical, socially responsible, and lifelong learners. This ensures they fulfill their goals while contributing positively to society."
+    },
+    {
+        "user_input": "Will I learn skills that are relevant long after graduation?",
+        "intent": "lifelong_learning",
+        "response": "The program fosters lifelong learning, ensuring that graduates remain adaptable and continue to grow professionally throughout their careers. Graduates are encouraged to stay updated with the latest advancements and maintain a commitment to continuous improvement."
+    },
+    {
+        "user_input": "Where can I find information about the learning outcomes of this program?",
+        "intent": "find_programme_outcomes",
+        "response": "Please refer to the section titled 'Common Programme Outcomes' for details on the learning outcomes of this program. A link to this section should be available."
+    },
+    {
+        "user_input": "What are the expected outcomes of this program?",
+        "intent": "understand_programme_outcomes",
+        "response": "The specific outcomes of this program are detailed in the 'Common Programme Outcomes' section. Please consult that section for a comprehensive overview."
+    },
+    {
+        "user_input": "I want to know what I'll be able to do after completing this program. Where should I look?",
+        "intent": "explore_post_programme_capabilities",
+        "response": "The 'Common Programme Outcomes' section provides information on the skills and knowledge you will gain upon completion of this program. This section will outline what you'll be able to do after graduation."
+    },
+    {
+        "user_input": "Are the program outcomes listed somewhere?",
+        "intent": "verify_outcome_availability",
+        "response": "Yes, the program outcomes are listed in the 'Common Programme Outcomes' section. Please refer to that section for more information."
+    },
+    {
+        "user_input": "Where do I find the common program outcomes?",
+        "intent": "locate_common_programme_outcomes",
+        "response": "The 'Common Programme Outcomes' are detailed in a dedicated section, likely linked or accessible within this document. Please look for a section or link specifically titled 'Common Programme Outcomes'."
+    },
+    {
+        "user_input": "What kind of technologies will I be working with in this program?",
+        "intent": "emerging_technologies",
+        "response": "The program focuses on providing you with the ability to work with emerging technologies in the computing field. The specific technologies will depend on the current trends and advancements in the field, ensuring you are equipped with the most relevant skills."
+    },
+    {
+        "user_input": "Does the program offer any practical experience?",
+        "intent": "practical_experience",
+        "response": "Yes, the program emphasizes practical experience through industry internships and research projects. These opportunities allow you to apply your engineering knowledge to solve real-world problems across various domains."
+    },
+    {
+        "user_input": "Will I get a chance to apply what I learn to real-world problems?",
+        "intent": "real_world_application",
+        "response": "Absolutely. A core component of the program is applying your engineering practice, gained through industry internships and research projects, to solve live problems in diverse domains. This hands-on experience is invaluable for your future career."
+    },
+    {
+        "user_input": "What kind of internship opportunities are available?",
+        "intent": "internship_opportunities",
+        "response": "The program provides industry internship opportunities that allow you to demonstrate the engineering practices you've learned. These internships focus on solving live problems in various domains, providing you with practical experience."
+    },
+    {
+        "user_input": "Can you tell me more about the research projects involved?",
+        "intent": "research_projects",
+        "response": "The research projects are designed to allow you to demonstrate your engineering practice and apply your knowledge to solve live problems in various domains. These projects, along with industry internships, provide a crucial practical component to your education."
+    },
+    {
+        "user_input": "What are the options for deploying applications?",
+        "intent": "application_deployment_options",
+        "response": "The curriculum covers application deployment using App Engine, Google Kubernetes Engine (GKE), and Compute Engine."
+    },
+    {
+        "user_input": "Can you tell me about the different storage solutions covered in the course?",
+        "intent": "storage_solutions_overview",
+        "response": "The course explores various storage solutions, including Cloud Storage, Cloud SQL, Cloud Bigtable, and Firestore."
+    },
+    {
+        "user_input": "I'm interested in deploying applications. Which specific Google Cloud services will I learn about?",
+        "intent": "application_deployment_details",
+        "response": "You will gain practical experience with App Engine, Google Kubernetes Engine (GKE), and Compute Engine for application deployment."
+    },
+    {
+        "user_input": "What kind of databases does the program teach about?",
+        "intent": "database_solutions",
+        "response": "The program covers Cloud SQL, Cloud Bigtable, and Firestore as database storage solutions."
+    },
+    {
+        "user_input": "Besides databases, what other storage options are taught?",
+        "intent": "other_storage_options",
+        "response": "In addition to databases like Cloud SQL, Cloud Bigtable, and Firestore, the program also covers Cloud Storage."
+    },
+    {
+        "user_input": "How much training will I receive, and who will be teaching me?",
+        "intent": "training_hours_and_trainers",
+        "response": "You will receive over 350 hours of on-campus training delivered by Google-certified trainers."
+    },
+    {
+        "user_input": "Does the program include real-world experience with Google technologies?",
+        "intent": "google_project_experience",
+        "response": "Yes, the program incorporates live projects and hackathons designed by Google, providing practical experience with Google technologies and methodologies."
+    },
+    {
+        "user_input": "Who created the course material?",
+        "intent": "curriculum_design",
+        "response": "The curriculum is designed by Google, ensuring it is up-to-date with industry standards and best practices."
+    },
+    {
+        "user_input": "Are there opportunities for internships or full-time positions after graduation?",
+        "intent": "placement_opportunities",
+        "response": "Yes, the program offers Pre-Placement Offers (PPO) and internships at top-tier IT firms."
+    },
+    {
+        "user_input": "Will I have access to a dedicated environment for hands-on learning?",
+        "intent": "lab_environment",
+        "response": "Yes, you will have access to a Google-built lab environment for practical applications and hands-on experience."
+    },
+    {
+        "user_input": "What kind of jobs can I get after graduating from the B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing?",
+        "intent": "cloud_computing_career_opportunities",
+        "response": "Graduates of the B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing can explore high-impact roles across various industries. Some potential career paths include Cloud DevOps Engineer, Blockchain Solutions Architect, Financial Data Scientist / Quantitative Analyst, Digital Payments Infrastructure Engineer, Cloud Security Architect, FinTech Software Engineer, and API Developer/Integration Engineer."
+    },
+    {
+        "user_input": "I'm interested in cloud security. Does the B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing prepare me for a role as a Cloud Security Architect?",
+        "intent": "cloud_security_architect_preparation",
+        "response": "Yes, the B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing can prepare you for a role as a Cloud Security Architect. This is one of the listed career paths for graduates of the program."
+    },
+    {
+        "user_input": "Does this program cover roles in the financial sector, such as working with financial data or digital payments?",
+        "intent": "fintech_career_path",
+        "response": "Yes, the B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing prepares students for roles in the financial sector. Specifically, the brochure mentions Financial Data Scientist / Quantitative Analyst, Digital Payments Infrastructure Engineer, and FinTech Software Engineer as potential career paths."
+    },
+    {
+        "user_input": "I'm interested in blockchain technology. Can this program lead to a career in that field?",
+        "intent": "blockchain_career_opportunities",
+        "response": "Yes, the B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing lists Blockchain Solutions Architect as a potential career path for graduates."
+    },
+    {
+        "user_input": "What opportunities are there for software development within this program, specifically related to APIs?",
+        "intent": "api_development_career",
+        "response": "The B.Tech-CSE (Hons.) program with Google Cloud Specialization in Cloud Computing prepares students for roles such as API Developer/Integration Engineer. This indicates opportunities for software development focused on APIs."
+    },
+    {
+        "user_input": "How long is the Computer Engineering program?",
+        "intent": "cse_program_duration",
+        "response": "The Computer Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility requirements for the Computer Engineering program?",
+        "intent": "cse_program_eligibility",
+        "response": "To be eligible for the Computer Engineering program, you must have completed 10 + 2 (high school)."
+    },
+    {
+        "user_input": "Which department offers this program?",
+        "intent": "cse_program_department",
+        "response": "The Computer Engineering program is offered by the Computer Engineering Department."
+    },
+    {
+        "user_input": "Can you tell me about the Computer Engineering program's length and entry requirements?",
+        "intent": "cse_program_details",
+        "response": "The Computer Engineering program is a 4-year program. The eligibility criterion is completion of 10 + 2."
+    },
+    {
+        "user_input": "I'm interested in Computer Engineering. What are the basic details?",
+        "intent": "cse_program_overview",
+        "response": "The Computer Engineering program is a 4-year program offered by the Computer Engineering Department. To be eligible, you need to have completed 10 + 2."
+    },
+    {
+        "user_input": "What specializations are offered within the Electronics and Communication Engineering program?",
+        "intent": "ece_specializations",
+        "response": "The B. Tech in Electronics and Communication Engineering (Hons.) program offers specializations in either Cloud Computing or Data Analytics, in collaboration with Google Cloud. Students can choose to specialize in either Cloud Computing or Data Analytics."
+    },
+    {
+        "user_input": "What kind of skills will I develop in the Electronics and Communication Engineering program?",
+        "intent": "ece_skills_development",
+        "response": "The program develops a strong foundation in electronic circuits, modern communication systems in telecom, embedded systems, and signal processing. It also integrates advanced skills in cloud infrastructure, big data, and intelligent analytics. The program aims to develop engineers who are technically strong and innovation-driven."
+    },
+    {
+        "user_input": "Will I gain hands-on experience with cloud technologies in the ECE program?",
+        "intent": "ece_cloud_experience",
+        "response": "Yes, the program expands your hands-on capabilities for handling large-scale data and cloud infrastructure, backed by Google Cloud tools and IBM. The program provides in-depth exposure to Cloud Computing or Data Analytics."
+    },
+    {
+        "user_input": "What degree will I receive if I specialize in Cloud Computing within the ECE program?",
+        "intent": "ece_cloud_degree",
+        "response": "Students opting for ECE with certification in Cloud Computing will be awarded the degree of B. Tech-ECE (Hons.) with Google Cloud Specialization in Cloud Computing."
+    },
+    {
+        "user_input": "What degree will I receive if I specialize in Data Analytics within the ECE program?",
+        "intent": "ece_data_analytics_degree",
+        "response": "Students opting for ECE with certification in Data Analytics will be awarded the degree of B. Tech-ECE (Hons.) with Google Cloud Specialization in Data Analytics."
+    },
+    {
+        "user_input": "What career paths are available to graduates of this program?",
+        "intent": "career_opportunities",
+        "response": "This program prepares graduates for successful careers as professionals in industry, government, academia, research, entrepreneurial pursuits, and consulting firms. It provides a strong foundation in Computer Science and Applications, along with problem-solving and programming skills, essential for various roles in these sectors."
+    },
+    {
+        "user_input": "Does the program focus on practical skills and real-world problem solving?",
+        "intent": "practical_skills_focus",
+        "response": "Yes, the program equips students with analytical, design, development, and soft skills to find innovative solutions to real-world problems. It emphasizes collaboration with industry and professional societies to ensure the skills learned are directly applicable and relevant."
+    },
+    {
+        "user_input": "Does the program encourage entrepreneurship and teamwork?",
+        "intent": "entrepreneurship_teamwork",
+        "response": "Absolutely. The program aims to inculcate entrepreneurship, managerial skills, and teamwork in students. It encourages demonstration of strong analytical, design, and implementation skills for the betterment of individuals and society, fostering an entrepreneurial mindset and collaborative spirit."
+    },
+    {
+        "user_input": "Does the program emphasize ethics and social responsibility?",
+        "intent": "ethics_social_responsibility",
+        "response": "Yes, the program emphasizes the importance of ethical behavior and social responsibility. It aims to produce graduates who are ethical, socially responsible, and lifelong learners, encouraging them to fulfill their goals while contributing positively to society."
+    },
+    {
+        "user_input": "Will this program help me become a lifelong learner?",
+        "intent": "lifelong_learning",
+        "response": "The program is designed to produce graduates who are ethical, socially responsible, and lifelong learners. It provides a foundation that encourages continuous learning and professional development throughout your career."
+    },
+    {
+        "user_input": "Where can I find information about the specific learning outcomes of this programme?",
+        "intent": "programme_learning_outcomes_location",
+        "response": "Please refer to the section titled \"Common Programme Outcomes\" for details on the programme's learning outcomes. This section provides comprehensive information on what you will achieve upon completion of the programme."
+    },
+    {
+        "user_input": "What are the 'Common Programme Outcomes' mentioned in the brochure?",
+        "intent": "define_common_programme_outcomes",
+        "response": "The 'Common Programme Outcomes' section outlines the skills, knowledge, and abilities you will gain upon successful completion of the programme. Please consult that section for a complete description."
+    },
+    {
+        "user_input": "Does this programme share learning outcomes with other programmes?",
+        "intent": "shared_programme_outcomes",
+        "response": "The programme outcomes are listed under the 'Common Programme Outcomes' section, implying a shared set of outcomes. Please review that section for specifics."
+    },
+    {
+        "user_input": "I'm interested in the specific results I can expect from this programme. Where can I find that?",
+        "intent": "programme_expected_results",
+        "response": "The expected results of the programme are detailed in the 'Common Programme Outcomes' section. This section will provide you with a clear understanding of what you will be able to achieve after completing the programme."
+    },
+    {
+        "user_input": "Where is the 'Common Programme Outcomes' section located in the brochure?",
+        "intent": "locate_common_programme_outcomes",
+        "response": "The brochure refers to a section titled 'Common Programme Outcomes'. Please search for this title within the document to find the detailed list of programme outcomes."
+    },
+    {
+        "user_input": "What specific skills will I gain related to VLSI and embedded systems?",
+        "intent": "vlsi_embedded_skills",
+        "response": "The program will equip you with domain-specific skills necessary for the design and analysis of components in both VLSI (Very-Large-Scale Integration) and embedded systems. This includes applying theoretical knowledge to practical design challenges."
+    },
+    {
+        "user_input": "Will I learn about networking and communication systems?",
+        "intent": "networking_communication_systems",
+        "response": "Yes, you will develop technical competency in networking and advanced communication systems. You will learn to use appropriate techniques for the realization of these systems."
+    },
+    {
+        "user_input": "Can I use what I learn to design signal processing systems?",
+        "intent": "signal_processing_design",
+        "response": "Yes, the program emphasizes the application of fundamental electronics and communication engineering concepts to design various components and systems. This includes applications in signal processing, image processing, and process control systems."
+    },
+    {
+        "user_input": "What kind of applications are covered in the electronics and communication engineering curriculum?",
+        "intent": "ece_application_coverage",
+        "response": "The curriculum covers a variety of applications, including signal processing, image processing, and process control systems. You'll learn to design components and systems for these applications using fundamental electronics and communication engineering principles."
+    },
+    {
+        "user_input": "Will I be able to design components for different systems after completing this program?",
+        "intent": "component_system_design",
+        "response": "Yes, the program aims to equip you with the skills to design a variety of components and systems. This includes components for VLSI, embedded systems, networking, communication systems, signal processing, image processing, and process control systems, utilizing fundamental electronics and communication engineering concepts."
+    },
+    {
+        "user_input": "How much training will I receive and who will be teaching me?",
+        "intent": "training_hours_and_instructors",
+        "response": "You'll receive over 350 hours of on-campus training delivered by Google-certified trainers. This ensures high-quality instruction and expertise throughout the program."
+    },
+    {
+        "user_input": "Does the program include real-world project experience?",
+        "intent": "google_live_projects_hackathons",
+        "response": "Yes, the program includes Google-incorporated live projects and hackathons. This provides practical, hands-on experience working on real-world challenges."
+    },
+    {
+        "user_input": "Who designed the curriculum for this program?",
+        "intent": "curriculum_design",
+        "response": "The curriculum is designed by Google, ensuring it is current, relevant, and aligned with industry best practices. This provides you with cutting-edge knowledge and skills."
+    },
+    {
+        "user_input": "Are there opportunities for internships or job placements after the program?",
+        "intent": "ppo_internship_opportunities",
+        "response": "Yes, the program offers Pre-Placement Offers (PPO) and internship opportunities at top-tier IT firms, providing a pathway to potential employment after graduation."
+    },
+    {
+        "user_input": "Will I have access to a lab environment to practice what I'm learning?",
+        "intent": "google_lab_environment",
+        "response": "Yes, you will have access to a Google-built lab environment for practical applications. This enables you to apply your knowledge and skills in a simulated real-world setting."
+    },
+    {
+        "user_input": "What kind of jobs can I get with a B.Tech-ECE (Hons.) degree specializing in Google Cloud?",
+        "intent": "ece_google_cloud_career_overview",
+        "response": "Graduates of the B.Tech-ECE (Hons.) programs with a Google Cloud specialization are prepared for impactful roles in both core electronics and tech-forward industries focused on Industry 5.0. Potential career pathways include roles such as Machine Learning Engineer, Data Analyst, Cloud Solutions Architect/Engineer/Analyst, AI and Signal Processing Specialist, Systems Design Engineer, and Technical Consultant."
+    },
+    {
+        "user_input": "I'm interested in machine learning. Does this program prepare me for a career as a Machine Learning Engineer?",
+        "intent": "ece_google_cloud_machine_learning_engineer",
+        "response": "Yes, the B.Tech-ECE (Hons.) program with a Google Cloud specialization specifically lists 'Machine Learning Engineer – Signal Processing Applications' as a potential career path for graduates. This indicates that the program provides the necessary skills and knowledge for such a role."
+    },
+    {
+        "user_input": "What kind of data analysis roles are available after graduation?",
+        "intent": "ece_google_cloud_data_analyst_roles",
+        "response": "The B.Tech-ECE (Hons.) program with a Google Cloud specialization prepares graduates for 'Data Analyst – Telecom & Embedded Systems' roles. This suggests that the curriculum includes training in data analysis techniques applicable to the telecom and embedded systems industries."
+    },
+    {
+        "user_input": "Are there any cloud-related career options besides engineering?",
+        "intent": "ece_google_cloud_roles_cloud_focus",
+        "response": "Yes, the program prepares students for several roles related to cloud technologies, including Cloud Solutions Architect, Cloud Engineer, and Cloud Analyst. Furthermore, graduates can pursue a career as a Technical Consultant in Telecom and Cloud Services."
+    },
+    {
+        "user_input": "I'm interested in designing smart devices. Does this program offer opportunities in that area?",
+        "intent": "ece_google_cloud_smart_device_design",
+        "response": "Yes, one of the listed career pathways for graduates of the B.Tech-ECE (Hons.) program with a Google Cloud specialization is 'Systems Design Engineer in Smart Devices.' This indicates the program provides training and knowledge relevant to designing systems for smart devices."
+    },
+    {
+        "user_input": "How long is the Electronics and Communication Engineering program?",
+        "intent": "programme_duration",
+        "response": "The Electronics and Communication Engineering program has a duration of 4 years."
+    },
+    {
+        "user_input": "What are the eligibility criteria for the Electronics and Communication Engineering program?",
+        "intent": "eligibility_criteria",
+        "response": "To be eligible for the Electronics and Communication Engineering program, you must have completed 10 + 2."
+    },
+    {
+        "user_input": "Which department offers the Electronics and Communication Engineering program?",
+        "intent": "programme_department",
+        "response": "The Electronics and Communication Engineering program is offered by the Electronics and Communication Engineering department."
+    },
+    {
+        "user_input": "Can you tell me more about the Electronics and Communication Engineering program duration?",
+        "intent": "programme_duration",
+        "response": "The Electronics and Communication Engineering program spans a period of 4 years from start to graduation."
+    },
+    {
+        "user_input": "What qualifications do I need to apply for the Electronics and Communication Engineering program?",
+        "intent": "eligibility_criteria",
+        "response": "The minimum qualification required for applying to the Electronics and Communication Engineering program is successful completion of 10 + 2."
+    },
+    {
+        "user_input": "Who is the dean of UIT?",
+        "intent": "dean_of_uit",
+        "response": "The Dean of Unitedworld Institute of Technology (UIT) is Dr. Puneet Sharma, Associate Dean & Associate Professor."
+    }
+]

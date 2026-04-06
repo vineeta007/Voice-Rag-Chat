@@ -1,0 +1,45 @@
+{
+  "timestamp": "20260324_094010",
+  "label": "baseline_local",
+  "benchmark_file": "/Users/meetpatel/Desktop/voicerag/eval/benchmark_sample.jsonl",
+  "base_url": "http://localhost:8000",
+  "total_questions": 28,
+  "ok": 28,
+  "errors": 0,
+  "metrics": {
+    "retrieval_hit@1": 0.7142857142857143,
+    "retrieval_hit@3": 0.7857142857142857,
+    "retrieval_hit@5": 0.7857142857142857,
+    "answer_correctness": 0.1575794346213549,
+    "hallucination_rate": 0.6071428571428571,
+    "latency_avg_ms": 2284.825569964596,
+    "latency_p50_ms": 2646.7491670046,
+    "latency_p95_ms": 3984.49616599828
+  },
+  "multilingual": {
+    "by_language": {
+      "English": {
+        "count": 14,
+        "correctness": 0.2508269144113659,
+        "hallucination": 0.35714285714285715,
+        "latency_ms": 1772.331934576089
+      },
+      "Hindi": {
+        "count": 14,
+        "correctness": 0.06433195483134392,
+        "hallucination": 0.8571428571428571,
+        "latency_ms": 2797.319205353103
+      }
+    },
+    "parity": {
+      "correctness_gap_abs": 0.186494959580022,
+      "hallucination_gap_abs": 0.49999999999999994,
+      "latency_gap_ms_abs": 1024.987270777014
+    }
+  },
+  "artifacts": {
+    "results_jsonl": "/Users/meetpatel/Desktop/voicerag/eval/runs/20260324_094010_baseline_local_results.jsonl",
+    "summary_json": "/Users/meetpatel/Desktop/voicerag/eval/runs/20260324_094010_baseline_local_summary.json",
+    "report_md": "/Users/meetpatel/Desktop/voicerag/eval/reports/20260324_094010_baseline_local_report.md"
+  }
+}

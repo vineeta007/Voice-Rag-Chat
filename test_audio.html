@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audio Test - Voice RAG</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #1a1a1a;
+        color: #fff;
+      }
+      h1 {
+        color: #7c3aed;
+      }
+      .test-section {
+        background: #2a2a2a;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 8px;
+        border: 1px solid #3a3a3a;
+      }
+      button {
+        background: #7c3aed;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+        font-size: 14px;
+      }
+      button:hover {
+        background: #6d28d9;
+      }
+      button:disabled {
+        background: #4a4a4a;
+        cursor: not-allowed;
+      }
+      .status {
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 12px;
+      }
+      .success {
+        background: #065f46;
+        color: #d1fae5;
+      }
+      .error {
+        background: #7f1d1d;
+        color: #fecaca;
+      }
+      .info {
+        background: #1e3a8a;
+        color: #dbeafe;
+      }
+      .warning {
+        background: #78350f;
+        color: #fef3c7;
+      }
+      textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #4a4a4a;
+        background: #1a1a1a;
+        color: #fff;
+        font-family: monospace;
+        font-size: 12px;
+        resize: vertical;
+      }
+      .transcript {
+        background: #1a1a1a;
+        padding: 15px;
+        border-radius: 5px;
+        min-height: 50px;
+        margin: 10px 0;
+        border: 1px solid #4a4a4a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🎤 Voice RAG Audio Test Suite</h1>
+    <p>Comprehensive test for all audio functionality</p>
+
+    <!-- Test 1: Browser Capabilities -->
+    <div class="test-section">
+      <h2>1️⃣ Browser Audio Capabilities</h2>
+      <button onclick="testBrowserCapabilities()">Check Browser Support</button>
+      <div id="browser-status"></div>
+    </div>
+
+    <!-- Test 2: Text-to-Speech (TTS) -->
+    <div class="test-section">
+      <h2>2️⃣ Text-to-Speech (TTS) Test</h2>
+      <p>Test both Google Cloud TTS and browser fallback</p>
+      <textarea id="tts-text" rows="3">
+Hello! This is a test of the text to speech system. Can you hear me clearly?</textarea
+      >
+      <br />
+      <button onclick="testGoogleTTS('English')">
+        🔊 Test Google TTS (English)
+      </button>
+      <button onclick="testGoogleTTS('Hindi')">
+        🔊 Test Google TTS (Hindi)
+      </button>
+      <button onclick="testBrowserTTS()">🔊 Test Browser TTS</button>
+      <button onclick="stopAllAudio()">⏹️ Stop</button>
+      <div id="tts-status"></div>
+    </div>
+
+    <!-- Test 3: Speech Recognition (Voice Input) -->
+    <div class="test-section">
+      <h2>3️⃣ Speech Recognition (Voice Input) Test</h2>
+      <p>Click "Start Listening" and speak into your microphone</p>
+      <button id="start-recognition" onclick="testSpeechRecognition()">
+        🎤 Start Listening
+      </button>
+      <button id="stop-recognition" onclick="stopSpeechRecognition()" disabled>
+        ⏹️ Stop
+      </button>
+      <div id="recognition-status"></div>
+      <div class="transcript" id="transcript">
+        Transcript will appear here...
+      </div>
+    </div>
+
+    <!-- Test 4: Backend TTS API -->
+    <div class="test-section">
+      <h2>4️⃣ Backend TTS API Test</h2>
+      <p>Test the backend /api/tts endpoint directly</p>
+      <button onclick="testBackendAPI()">🔧 Test Backend API</button>
+      <div id="backend-status"></div>
+    </div>
+
+    <!-- Test 5: Full Integration -->
+    <div class="test-section">
+      <h2>5️⃣ Full Integration Test</h2>
+      <p>Test voice input → backend → TTS output (full workflow)</p>
+      <button onclick="testFullIntegration()">
+        🎯 Run Full Integration Test
+      </button>
+      <div id="integration-status"></div>
+    </div>
+
+    <script>
+      let recognition = null;
+      let currentAudio = null;
+
+      // Test 1: Browser Capabilities
+      function testBrowserCapabilities() {
+        const statusDiv = document.getElementById("browser-status");
+        let html = "<h3>Browser Support Check:</h3>";
+
+        const tests = [
+          {
+            name: "Speech Recognition",
+            check:
+              "webkitSpeechRecognition" in window ||
+              "SpeechRecognition" in window,
+          },
+          { name: "Speech Synthesis", check: "speechSynthesis" in window },
+          {
+            name: "Audio Context",
+            check: "AudioContext" in window || "webkitAudioContext" in window,
+          },
+          {
+            name: "Media Devices",
+            check:
+              "mediaDevices" in navigator &&
+              "getUserMedia" in navigator.mediaDevices,
+          },
+          { name: "Fetch API", check: "fetch" in window },
+        ];
+
+        tests.forEach((test) => {
+          const status = test.check ? "✅" : "❌";
+          const className = test.check ? "success" : "error";
+          html += `<div class="status ${className}">${status} ${test.name}: ${test.check ? "Supported" : "Not Supported"}</div>`;
+        });
+
+        // Additional info
+        html += "<h4>Available Speech Synthesis Voices:</h4>";
+        if ("speechSynthesis" in window) {
+          const voices = window.speechSynthesis.getVoices();
+          if (voices.length > 0) {
+            html += '<div class="status info">';
+            voices.forEach((voice) => {
+              html += `${voice.name} (${voice.lang})<br>`;
+            });
+            html += "</div>";
+          } else {
+            html +=
+              '<div class="status warning">Loading voices... Try again in a moment.</div>';
+            setTimeout(() => testBrowserCapabilities(), 1000);
+          }
+        }
+
+        statusDiv.innerHTML = html;
+      }
+
+      // Test 2: Google Cloud TTS
+      async function testGoogleTTS(language) {
+        const statusDiv = document.getElementById("tts-status");
+        const text = document.getElementById("tts-text").value;
+
+        statusDiv.innerHTML = `<div class="status info">🔄 Requesting ${language} TTS from backend...</div>`;
+
+        try {
+          const response = await fetch("http://localhost:8000/api/tts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text, language }),
+          });
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.detail || "TTS request failed");
+          }
+
+          const data = await response.json();
+          statusDiv.innerHTML = `<div class="status success">✅ Received audio data (${data.audio.length} chars base64)</div>`;
+
+          // Decode and play
+          const audioData = atob(data.audio);
+          const arrayBuffer = new ArrayBuffer(audioData.length);
+          const view = new Uint8Array(arrayBuffer);
+          for (let i = 0; i < audioData.length; i++) {
+            view[i] = audioData.charCodeAt(i);
+          }
+
+          const audioBlob = new Blob([arrayBuffer], { type: "audio/mp3" });
+          const audioUrl = URL.createObjectURL(audioBlob);
+
+          stopAllAudio();
+          currentAudio = new Audio(audioUrl);
+          currentAudio.onended = () => {
+            URL.revokeObjectURL(audioUrl);
+            statusDiv.innerHTML += `<div class="status success">✅ Playback finished</div>`;
+          };
+          currentAudio.onerror = (e) => {
+            statusDiv.innerHTML += `<div class="status error">❌ Playback error: ${e}</div>`;
+          };
+
+          await currentAudio.play();
+          statusDiv.innerHTML += `<div class="status info">🔊 Playing audio...</div>`;
+        } catch (error) {
+          statusDiv.innerHTML = `<div class="status error">❌ Error: ${error.message}</div>`;
+        }
+      }
+
+      // Test Browser TTS
+      function testBrowserTTS() {
+        const statusDiv = document.getElementById("tts-status");
+        const text = document.getElementById("tts-text").value;
+
+        if (!("speechSynthesis" in window)) {
+          statusDiv.innerHTML = `<div class="status error">❌ Browser TTS not supported</div>`;
+          return;
+        }
+
+        stopAllAudio();
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.9;
+        utterance.pitch = 1.0;
+        utterance.volume = 0.9;
+
+        utterance.onstart = () => {
+          statusDiv.innerHTML = `<div class="status info">🔊 Browser TTS speaking...</div>`;
+        };
+
+        utterance.onend = () => {
+          statusDiv.innerHTML += `<div class="status success">✅ Browser TTS finished</div>`;
+        };
+
+        utterance.onerror = (e) => {
+          statusDiv.innerHTML += `<div class="status error">❌ Browser TTS error: ${e.error}</div>`;
+        };
+
+        window.speechSynthesis.speak(utterance);
+        statusDiv.innerHTML = `<div class="status info">🔄 Starting browser TTS...</div>`;
+      }
+
+      // Stop all audio
+      function stopAllAudio() {
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          currentAudio = null;
+        }
+        if ("speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
+      }
+
+      // Test 3: Speech Recognition
+      function testSpeechRecognition() {
+        const statusDiv = document.getElementById("recognition-status");
+        const transcriptDiv = document.getElementById("transcript");
+
+        if (
+          !(
+            "webkitSpeechRecognition" in window || "SpeechRecognition" in window
+          )
+        ) {
+          statusDiv.innerHTML = `<div class="status error">❌ Speech Recognition not supported in this browser</div>`;
+          return;
+        }
+
+        const SpeechRecognition =
+          window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = "en-US";
+
+        recognition.onstart = () => {
+          statusDiv.innerHTML = `<div class="status success">✅ Listening... Speak now!</div>`;
+          document.getElementById("start-recognition").disabled = true;
+          document.getElementById("stop-recognition").disabled = false;
+        };
+
+        recognition.onresult = (event) => {
+          let interim = "";
+          let final = "";
+
+          for (let i = event.resultIndex; i < event.results.length; i++) {
+            const transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              final += transcript + " ";
+            } else {
+              interim += transcript;
+            }
+          }
+
+          transcriptDiv.innerHTML = `
+                    ${final ? "<strong>Final:</strong> " + final + "<br>" : ""}
+                    ${interim ? "<em>Interim:</em> " + interim : ""}
+                `;
+        };
+
+        recognition.onerror = (event) => {
+          statusDiv.innerHTML = `<div class="status error">❌ Error: ${event.error}</div>`;
+          if (
+            event.error !== "no-speech" &&
+            event.error !== "aborted" &&
+            event.error !== "network"
+          ) {
+            document.getElementById("start-recognition").disabled = false;
+            document.getElementById("stop-recognition").disabled = true;
+          }
+        };
+
+        recognition.onend = () => {
+          statusDiv.innerHTML += `<div class="status info">🛑 Recognition stopped</div>`;
+          document.getElementById("start-recognition").disabled = false;
+          document.getElementById("stop-recognition").disabled = true;
+        };
+
+        recognition.start();
+      }
+
+      function stopSpeechRecognition() {
+        if (recognition) {
+          recognition.stop();
+        }
+      }
+
+      // Test 4: Backend API
+      async function testBackendAPI() {
+        const statusDiv = document.getElementById("backend-status");
+        statusDiv.innerHTML = `<div class="status info">🔄 Testing backend endpoints...</div>`;
+
+        try {
+          // Test health endpoint
+          const healthResponse = await fetch(
+            "http://localhost:8000/api/health",
+          );
+          const healthData = await healthResponse.json();
+          statusDiv.innerHTML += `<div class="status success">✅ Health: ${JSON.stringify(healthData)}</div>`;
+
+          // Test TTS endpoint
+          const ttsResponse = await fetch("http://localhost:8000/api/tts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: "Test", language: "English" }),
+          });
+
+          if (ttsResponse.ok) {
+            const ttsData = await ttsResponse.json();
+            statusDiv.innerHTML += `<div class="status success">✅ TTS API: Working (${ttsData.audio.substring(0, 50)}...)</div>`;
+          } else {
+            const error = await ttsResponse.json();
+            statusDiv.innerHTML += `<div class="status warning">⚠️ TTS API: ${error.detail}</div>`;
+          }
+        } catch (error) {
+          statusDiv.innerHTML += `<div class="status error">❌ Backend error: ${error.message}</div>`;
+        }
+      }
+
+      // Test 5: Full Integration
+      async function testFullIntegration() {
+        const statusDiv = document.getElementById("integration-status");
+        statusDiv.innerHTML = `<div class="status info">🔄 Starting full integration test...</div>`;
+
+        try {
+          // Step 1: Check browser capabilities
+          if (
+            !(
+              "webkitSpeechRecognition" in window ||
+              "SpeechRecognition" in window
+            )
+          ) {
+            throw new Error("Speech Recognition not supported");
+          }
+          statusDiv.innerHTML += `<div class="status success">✅ Step 1: Browser capabilities OK</div>`;
+
+          // Step 2: Test backend connection
+          const healthResponse = await fetch(
+            "http://localhost:8000/api/health",
+          );
+          if (!healthResponse.ok) throw new Error("Backend not responding");
+          statusDiv.innerHTML += `<div class="status success">✅ Step 2: Backend connection OK</div>`;
+
+          // Step 3: Test TTS
+          const ttsResponse = await fetch("http://localhost:8000/api/tts", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              text: "Integration test successful",
+              language: "English",
+            }),
+          });
+          if (!ttsResponse.ok) throw new Error("TTS endpoint failed");
+          statusDiv.innerHTML += `<div class="status success">✅ Step 3: TTS endpoint OK</div>`;
+
+          // Step 4: Summary
+          statusDiv.innerHTML += `<div class="status success">🎯 All integration tests passed!</div>`;
+        } catch (error) {
+          statusDiv.innerHTML += `<div class="status error">❌ Integration test failed: ${error.message}</div>`;
+        }
+      }
+
+      // Load voices when page loads
+      if ("speechSynthesis" in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          console.log("Voices loaded");
+        };
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,290 @@
+import { useState, useEffect } from 'react';
+import { ChatInterface, Message } from './components/ChatInterface';
+import { TextInput } from './components/TextInput';
+import { VoiceInput } from './components/VoiceInput';
+import { apiService, Language } from './services/api';
+import { speakText, stopSpeaking } from './utils/speech';
+import './App.css';
+
+function App() {
+    const [messages, setMessages] = useState<Message[]>([]);
+    const [isProcessing, setIsProcessing] = useState(false);
+    const [inputMode, setInputMode] = useState<'text' | 'voice'>('text');
+    const [selectedLanguage, setSelectedLanguage] = useState('English');
+    const [languages, setLanguages] = useState<Language[]>([]);
+    const [backendStatus, setBackendStatus] = useState<'checking' | 'online' | 'offline'>('checking');
+    const [isSpeaking, setIsSpeaking] = useState(false);
+
+
+    // Listen for TTS events
+    useEffect(() => {
+        const handleTTSStart = () => setIsSpeaking(true);
+        const handleTTSEnd = () => setIsSpeaking(false);
+
+        window.addEventListener('tts-started', handleTTSStart);
+        window.addEventListener('tts-ended', handleTTSEnd);
+
+        return () => {
+            window.removeEventListener('tts-started', handleTTSStart);
+            window.removeEventListener('tts-ended', handleTTSEnd);
+        };
+    }, []);
+
+    useEffect(() => {
+        // Load supported languages
+        loadLanguages();
+        // Check backend health
+        checkBackendHealth();
+
+        // Retry connection every 5 seconds if offline
+        const interval = setInterval(() => {
+            if (backendStatus === 'offline') {
+                checkBackendHealth();
+            }
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [backendStatus]);
+
+    const loadLanguages = async () => {
+        try {
+            const langs = await apiService.getSupportedLanguages();
+            setLanguages(langs);
+        } catch (error) {
+            console.error('Error loading languages:', error);
+            // Fallback languages (only those with excellent voice support)
+            setLanguages([
+                { code: 'en', name: 'English' },
+                { code: 'hi', name: 'Hindi' }
+            ]);
+        }
+    };
+
+    const checkBackendHealth = async () => {
+        try {
+            setBackendStatus('checking');
+            const health = await apiService.checkHealth();
+            if (health.status === 'healthy') {
+                setBackendStatus('online');
+            } else {
+                setBackendStatus('offline');
+            }
+        } catch (error) {
+            console.error('Backend health check failed:', error);
+            setBackendStatus('offline');
+        }
+    };
+
+    const addMessage = (content: string, type: 'user' | 'assistant', isVoice = false, language?: string) => {
+        const newMessage: Message = {
+            id: Date.now().toString(),
+            type,
+            content,
+            timestamp: new Date(),
+            isVoice,
+            language,
+        };
+        setMessages((prev) => [...prev, newMessage]);
+    };
+
+    const handleTextQuery = async (question: string) => {
+        if (!question.trim() || backendStatus === 'offline') return;
+
+        setIsProcessing(true);
+
+        const userMessage: Message = {
+            id: Date.now().toString(),
+            role: 'user',
+            content: question,
+            timestamp: new Date(),
+            language: selectedLanguage,
+        };
+
+        setMessages(prev => [...prev, userMessage]);
+
+        try {
+            const response = await apiService.query(question, selectedLanguage);
+
+            const assistantMessage: Message = {
+                id: (Date.now() + 1).toString(),
+                role: 'assistant',
+                content: response.answer,
+                timestamp: new Date(),
+                language: selectedLanguage,
+            };
+
+            setMessages(prev => [...prev, assistantMessage]);
+        } catch (error) {
+            console.error('Error querying backend:', error);
+        } finally {
+            setIsProcessing(false);
+        }
+    };
+
+    // Add user's spoken text
+    addMessage(transcribedText, 'user', true, selectedLanguage);
+    setIsProcessing(true);
+
+    try {
+        // Get answer from RAG
+        const response = await apiService.textQuery(transcribedText, selectedLanguage);
+
+        // Add assistant's answer
+        addMessage(response.answer, 'assistant', false, response.language);
+
+        // Speak the answer in the selected language (only English or Hindi)
+        const ttsLang = selectedLanguage === 'English' ? 'en-US' : 'hi-IN';
+        console.log('🔊 Speaking in:', ttsLang);
+        speakText(response.answer, ttsLang);
+
+    } catch (error: any) {
+        console.error('Error:', error);
+        const errorMsg = error.response?.data?.detail || error.message || 'Failed to process';
+        addMessage(`Error: ${errorMsg}`, 'assistant');
+        setError(errorMsg);
+    } finally {
+        setIsProcessing(false);
+    }
+};
+
+return (
+    <div className="app">
+        <header>
+            <div className="header-content">
+                <div className="logo-section">
+                    <div className="logo">🎓</div>
+                    <div className="title-section">
+                        <h1>Voice RAG</h1>
+                        <p className="subtitle">AI-Powered Intelligent Information Assistant</p>
+                    </div>
+                </div>
+
+                <div className="header-controls">
+                    <div className="status-indicator">
+                        <span className={`status-dot ${backendStatus}`}></span>
+                        <span>
+                            {backendStatus === 'checking' && 'Connecting...'}
+                            {backendStatus === 'online' && 'Connected'}
+                            {backendStatus === 'offline' && 'Offline'}
+                        </span>
+                    </div>
+
+                    <div className="language-selector">
+                        <select
+                            value={selectedLanguage}
+                            onChange={(e) => setSelectedLanguage(e.target.value)}
+                        >
+                            {languages.map(lang => (
+                                <option key={lang.code} value={lang.name}>
+                                    {lang.name}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div className="chat-container">
+                {messages.length === 0 ? (
+                    <div className="welcome-screen">
+                        <div className="welcome-icon">🎓</div>
+                        <h2>Welcome to Voice RAG!</h2>
+                        <p>Ask me anything about Karnavati University - admissions, programs, facilities, and more!</p>
+
+                        <div className="example-questions">
+                            <div className="example-question" onClick={() => handleTextQuery("What are the admission requirements for B.Tech IT?")}>
+                                <div className="icon">📚</div>
+                                <div className="text">What are the admission requirements for B.Tech IT?</div>
+                            </div>
+                            <div className="example-question" onClick={() => handleTextQuery("Tell me about hostel facilities")}>
+                                <div className="icon">🏠</div>
+                                <div className="text">Tell me about hostel facilities</div>
+                            </div>
+                            <div className="example-question" onClick={() => handleTextQuery("Who is the dean of the Law faculty?")}>
+                                <div className="icon">👨‍🏫</div>
+                                <div className="text">Who is the dean of the Law faculty?</div>
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    <ChatInterface messages={messages} isProcessing={isProcessing} />
+                )}
+            </div>
+        </main>
+
+        <footer className="footer-content">
+            <div className="mode-selector">
+                <button
+                    className={`mode-button ${inputMode === 'text' ? 'active' : ''}`}
+                    onClick={() => setInputMode('text')}
+                >
+                    ⌨️ Text
+                </button>
+                <button
+                    className={`mode-button ${inputMode === 'voice' ? 'active' : ''}`}
+                    onClick={() => setInputMode('voice')}
+                    title="Voice feature requires Whisper (may still be installing)"
+                >
+                    🎤 Voice
+                </button>
+            </div>
+
+            <div className="input-container">
+                {isSpeaking && (
+                    <div style={{
+                        marginBottom: '12px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: '8px'
+                    }}>
+                        <button
+                            onClick={stopSpeaking}
+                            style={{
+                                padding: '10px 20px',
+                                backgroundColor: '#ff4444',
+                                color: 'white',
+                                border: 'none',
+                                borderRadius: '8px',
+                                cursor: 'pointer',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                boxShadow: '0 2px 8px rgba(255, 68, 68, 0.3)',
+                                transition: 'all 0.2s'
+                            }}
+                            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#ff2222'}
+                            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#ff4444'}
+                        >
+                            🔇 Stop Speaking
+                        </button>
+                        <span style={{
+                            fontSize: '12px',
+                            color: '#888',
+                            animation: 'pulse 1.5s infinite'
+                        }}>
+                            🔊 AI is speaking...
+                        </span>
+                    </div>
+                )}
+
+                {inputMode === 'text' ? (
+                    <TextInput onSubmit={handleTextQuery} isProcessing={isProcessing || backendStatus === 'offline'} />
+                ) : (
+                    <VoiceInput
+                        onTranscript={handleVoiceQuery}
+                        isProcessing={isProcessing || backendStatus === 'offline'}
+                        selectedLanguage={selectedLanguage}
+                    />
+                )}
+            </div>
+        </footer>
+    </div>
+);
+}
+
+export default App;
