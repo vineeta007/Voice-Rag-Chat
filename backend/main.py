@@ -52,6 +52,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/api/health")
+def health():
+    return {"status": "ok"}
+
 # CORS middleware
 allowed_origins = [
     "http://localhost:5173",
@@ -756,9 +760,3 @@ async def get_elevenlabs_status():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-app = FastAPI()
-
-@app.get("/")
-def home():
-    return {"message": "Backend is running 🚀"}
