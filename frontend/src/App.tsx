@@ -4,10 +4,12 @@ import { TextInput } from './components/TextInput';
 import { VoiceInput } from './components/VoiceInput';
 import { ConversationSidebar } from './components/ConversationSidebar';
 import { ThemeToggle } from './components/ThemeToggle';
-import { apiService, Language, API_BASE_URL, QueryResponse } from './services/api';
+import { apiService, Language, QueryResponse } from './services/api';
 import { stopSpeaking } from './utils/speech';
 import { useConversations } from './hooks/useConversations';
 import './App.css';
+
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 function App() {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -443,12 +445,11 @@ function App() {
 const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) => {
 
     const API = import.meta.env.VITE_API_URL;
-    console.log("API URL:", API);   // ✅ ADD THIS
+    console.log("API URL:", import.meta.env.VITE_API_URL);// ✅ ADD THIS
 
     if (!transcript.trim() || backendStatus === 'offline') return;
 
     setIsProcessing(true);
-        setIsProcessing(true);
 
         let conversationId = activeConversationIdRef.current;
         if (!conversationId) {
@@ -469,29 +470,6 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
         const userMessages = [...messagesRef.current, userMessage];
         persistConversationMessages(conversationId, userMessages, selectedLanguage, true);
 
-try {
-  const res = await fetch(`${API}/chat`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ query: transcript })
-  });
-
-  const data = await res.json();
-  console.log("AI response:", data);
-
-  const aiMessage: Message = {
-    id: (Date.now() + 1).toString(),
-    type: "assistant",
-    content: data.response || data.message || "No response",
-    timestamp: new Date(),
-  };
-
-  const updatedMessages = [...userMessages, aiMessage];
-
-  // Save + update UI
-  persistConversationMessages(conversationId, updatedMessages, selectedLanguage);
 
 } catch (err) {
   console.error("API error:", err);
