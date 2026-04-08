@@ -4,7 +4,6 @@ FastAPI Backend for Multilingual Voice RAG System
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.concurrency import run_in_threadpool
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
@@ -47,8 +46,8 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
+        "http://localhost:5176",   # ⭐ MOST IMPORTANT
         "http://localhost:5173",
-        "http://localhost:5176",   # ⭐ ADD THIS
         "http://localhost:3000",
         "https://voice-rag-chat.vercel.app"
     ],
