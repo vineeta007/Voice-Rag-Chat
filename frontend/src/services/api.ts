@@ -3,14 +3,19 @@ import axios from 'axios';
 // Use environment variable for API URL, fallback to localhost
 // Remove trailing slash if present to avoid double slashes
 const getApiUrl = () => {
-    let url = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    let url = import.meta.env.VITE_API_URL;
+
+    if (!url) {
+        console.error("❌ VITE_API_URL is NOT defined");
+    }
+
     if (url.endsWith('/')) {
         url = url.slice(0, -1);
     }
-    console.log('🔗 API Base URL:', url); // Debug log
+
+    console.log('🔗 API Base URL:', url);
     return url;
 };
-
 export const API_BASE_URL = getApiUrl();
 
 export interface TextQueryRequest {
@@ -95,10 +100,8 @@ const api = axios.create({
     headers: {
         'Content-Type': 'application/json',
     },
-    timeout: REQUEST_TIMEOUT_MS,
-    withCredentials: true,
+    timeout: REQUEST_TIMEOUT_MS
 });
-
 // Add response interceptor for better error diagnosis
 api.interceptors.response.use(
     response => response,
@@ -155,16 +158,15 @@ export const apiService = {
 
         try {
             const response = await axios.post<VoiceQueryResponse>(
-                `${API_BASE_URL}/api/voice-query`,
-                formData,
-                {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                    },
-                    timeout: REQUEST_TIMEOUT_MS,
-                    withCredentials: true,
-                }
-            );
+    `${API_BASE_URL}/api/voice-query`,
+    formData,
+    {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        timeout: REQUEST_TIMEOUT_MS
+    }
+);
             return response.data;
         } catch (error: any) {
             if (!isRetryableError(error)) {
@@ -278,7 +280,6 @@ export const apiService = {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                credentials: 'include',
                 body: JSON.stringify({ question, language, client_conversation_id: clientConversationId }),
                 signal: controller.signal,
             });
