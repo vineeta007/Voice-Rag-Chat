@@ -440,10 +440,14 @@ function App() {
             setIsProcessing(false);
         }
     };
+const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) => {
 
-    const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) => {
-        if (!transcript.trim() || backendStatus === 'offline') return;
+    const API = import.meta.env.VITE_API_URL;
+    console.log("API URL:", API);   // ✅ ADD THIS
 
+    if (!transcript.trim() || backendStatus === 'offline') return;
+
+    setIsProcessing(true);
         setIsProcessing(true);
 
         let conversationId = activeConversationIdRef.current;
@@ -465,6 +469,33 @@ function App() {
         const userMessages = [...messagesRef.current, userMessage];
         persistConversationMessages(conversationId, userMessages, selectedLanguage, true);
 
+try {
+  const res = await fetch(`${API}/chat`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ query: transcript })
+  });
+
+  const data = await res.json();
+  console.log("AI response:", data);
+
+  const aiMessage: Message = {
+    id: (Date.now() + 1).toString(),
+    type: "assistant",
+    content: data.response || data.message || "No response",
+    timestamp: new Date(),
+  };
+
+  const updatedMessages = [...userMessages, aiMessage];
+
+  // Save + update UI
+  persistConversationMessages(conversationId, updatedMessages, selectedLanguage);
+
+} catch (err) {
+  console.error("API error:", err);
+}
         try {
             // Get full response from backend
             const response = await apiService.textQuery(transcript, selectedLanguage, conversationId);

@@ -2,6 +2,7 @@
 FastAPI Backend for Multilingual Voice RAG System
 """
 from fastapi import FastAPI, UploadFile, File, HTTPException, Form, Request, Response
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -42,6 +43,13 @@ app = FastAPI(
     title="Multilingual Voice RAG API",
     description="RAG system for university data with voice and text input",
     version="1.0.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # for now allow all (later restrict)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # CORS middleware
