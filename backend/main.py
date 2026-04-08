@@ -26,8 +26,8 @@ load_dotenv()
 
 # from backend.tts_service import tts_service  # Google Cloud TTS (requires billing)
 from edge_tts_service import edge_tts_service
-from backend.elevenlabs_tts_service import elevenlabs_tts_service
-from backend.feedback_service import feedback_service  # Feedback system
+from elevenlabs_tts_service import elevenlabs_tts_service
+from feedback_service import feedback_service  # Feedback system
 
 
 # Prefer ElevenLabs if configured, otherwise fallback to Edge TTS.
