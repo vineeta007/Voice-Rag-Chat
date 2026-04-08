@@ -21,6 +21,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from dotenv import load_dotenv
 
+import os
+PORT = int(os.environ.get("PORT", 10000))
+
 # Load environment variables
 load_dotenv()
 
@@ -40,6 +43,10 @@ app = FastAPI(
     description="RAG system for university data with voice and text input",
     version="1.0.0"
 )
+
+@app.get("/")
+def home():
+    return {"message": "Backend is running 🚀"}
 
 # CORS middleware
 allowed_origins = [
