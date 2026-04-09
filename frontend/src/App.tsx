@@ -434,7 +434,7 @@ function App() {
 
                 const stillActive = activeConversationIdRef.current === conversationId;
                 const assistantMessages = [...(stillActive ? messagesRef.current : userMessages), assistantMessage];
-                persistConversationMessages(conversationId, assistantMessages, selectedLanguage, stillActive);
+              persistConversationMessages(conversationId, assistantMessages, selectedLanguage, stillActive);
             }
         } catch (error) {
             console.error('Error querying backend:', error);
@@ -443,14 +443,14 @@ function App() {
         }
     };
 const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) => {
-
     const API = import.meta.env.VITE_API_URL;
-    console.log("API URL:", import.meta.env.VITE_API_URL);// ✅ ADD THIS
+    console.log("API URL:", API);
 
     if (!transcript.trim() || backendStatus === 'offline') return;
 
     setIsProcessing(true);
 
+    try {
         let conversationId = activeConversationIdRef.current;
         if (!conversationId) {
             conversationId = createNewConversation(selectedLanguage);
@@ -469,79 +469,30 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
 
         const userMessages = [...messagesRef.current, userMessage];
         persistConversationMessages(conversationId, userMessages, selectedLanguage, true);
+        const response = await apiService.textQuery(transcript, selectedLanguage, conversationId);
 
+        const assistantMessage: Message = {
+            id: (Date.now() + 1).toString(),
+            type: 'assistant',
+            content: response.answer,
+            timestamp: new Date(),
+            language: selectedLanguage,
+            trustScore: response.trust_score,
+            evidence: response.evidence,
+            sources: response.sources,
+        };
 
-} catch (err) {
-  console.error("API error:", err);
-}
-        try {
-            // Get full response from backend
-            const response = await apiService.textQuery(transcript, selectedLanguage, conversationId);
+        const stillActive = activeConversationIdRef.current === conversationId;
+        const assistantMessages = [...(stillActive ? messagesRef.current : userMessages), assistantMessage];
 
-            // Create assistant message with the full content
-            const assistantMessageId = (Date.now() + 1).toString();
-            const assistantMessage: Message = {
-                id: assistantMessageId,
-                type: 'assistant',
-                content: response.answer,
-                timestamp: new Date(),
-                language: selectedLanguage,
-                trustScore: response.trust_score,
-                evidence: response.evidence,
-                sources: response.sources,
-                highlightedWordIndex: undefined
-            };
+       persistConversationMessages(conversationId, assistantMessages, selectedLanguage, stillActive);
 
-            const stillActive = activeConversationIdRef.current === conversationId;
-            const assistantMessages = [...(stillActive ? messagesRef.current : userMessages), assistantMessage];
-            persistConversationMessages(conversationId, assistantMessages, selectedLanguage, stillActive);
-
-            // Stop loading as soon as text response is available.
-            // Voice playback can continue independently.
-            setIsProcessing(false);
-
-            // Import synced audio utilities
-            const { SyncedTTSQueue } = await import('./utils/syncedAudio');
-
-            syncedQueueRef.current?.clear();
-
-            // Create synced TTS queue
-            const syncedQueue = new SyncedTTSQueue();
-            syncedQueueRef.current = syncedQueue;
-
-            // Set up word highlighting callback
-            syncedQueue.setWordUpdateCallback((wordIndex: number) => {
-                if (activeConversationIdRef.current !== conversationId) {
-                    return;
-                }
-
-                setVisibleMessages(messagesRef.current.map(msg =>
-                    msg.id === assistantMessageId
-                        ? { ...msg, highlightedWordIndex: wordIndex }
-                        : msg
-                ));
-            });
-
-            // Add the full response to the queue for synced playback
-            await syncedQueue.addSentence(response.answer, selectedLanguage);
-
-            if (syncedQueueRef.current === syncedQueue) {
-                syncedQueueRef.current = null;
-            }
-
-            if (activeConversationIdRef.current === conversationId) {
-                setVisibleMessages(messagesRef.current.map(msg =>
-                    msg.id === assistantMessageId
-                        ? { ...msg, highlightedWordIndex: undefined }
-                        : msg
-                ));
-            }
-
-        } catch (error) {
-            console.error('Error processing voice query:', error);
-            setIsProcessing(false);
-        }
-    };
+    } catch (error) {
+        console.error("Voice API error:", error);
+    } finally {
+        setIsProcessing(false);
+    }
+};
 
     const handleRegenerate = (assistantMessageId: string) => {
         const currentMessages = messagesRef.current;
