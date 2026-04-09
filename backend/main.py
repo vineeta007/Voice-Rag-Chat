@@ -45,21 +45,12 @@ app = FastAPI(
 )
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:5176",
-        "http://localhost:5177",
-        "http://localhost:5178",  # ⭐ VERY IMPORTANT
-        "http://localhost:3000",
-        "https://voice-rag-chat.vercel.app"
-    ],
+    allow_origin_regex="https://.*\\.vercel\\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-@app.get("/api/health")
-def health():
-    return {"status": "ok"}
+
 
 # Initialize RAG engine and voice processor
 rag_engine = None
