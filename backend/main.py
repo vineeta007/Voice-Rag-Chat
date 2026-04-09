@@ -353,24 +353,23 @@ def _compute_trust_and_evidence(answer: str, sources: List[Dict[str, Any]], top_
 
 
 def get_rag_engine():
-    """Lazily initialize the RAG engine with the workspace dataset."""
     global rag_engine
 
     if rag_engine is None:
-        from backend.rag_engine import RAGEngine
+        # ❌ REMOVE backend.
+        from rag_engine import RAGEngine   # ✅ FIXED
         print("⏳ Initializing RAG Engine...")
         rag_engine = RAGEngine(data_path=str(DATA_PATH))
         print("✅ RAG Engine ready!")
 
     return rag_engine
 
-
 def get_voice_processor():
-    """Lazily initialize voice processing for audio queries."""
     global voice_processor
 
     if voice_processor is None:
-        from backend.voice_processor import VoiceProcessor
+        # ❌ REMOVE backend.
+        from voice_processor import VoiceProcessor   # ✅ FIXED
         voice_processor = VoiceProcessor()
 
     return voice_processor

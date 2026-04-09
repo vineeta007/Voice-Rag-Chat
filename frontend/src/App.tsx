@@ -9,7 +9,7 @@ import { stopSpeaking } from './utils/speech';
 import { useConversations } from './hooks/useConversations';
 import './App.css';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://voice-rag-chat.onrender.com";
 
 function App() {
     const [messages, setMessages] = useState<Message[]>([]);
@@ -254,7 +254,7 @@ function App() {
         persistConversationMessages(conversationId, userMessages, selectedLanguage, true);
 
         try {
-            const useStreamingText = (import.meta.env.VITE_STREAMING_TEXT ?? 'true') !== 'false';
+           const useStreamingText = false;
             // TTS should NOT auto-play on text queries, only on voice queries
             const useStreamingTTS = false;
             const assistantMessageId = (Date.now() + 1).toString();
@@ -336,44 +336,57 @@ function App() {
 
                 let streamedSentenceCount = 0;
 
-                try {
-                    const response = await apiService.textQueryStream(
+try {
+    // ✅ ADD THESE TWO LINES HERE
+    console.log("QUESTION SENT:", question);
+    console.log("CONVERSATION ID:", conversationId);
+
+    const response = await apiService.textQueryStream(
                         question,
                         selectedLanguage,
                         conversationId,
                         {
                             onDelta: (delta) => {
-                                if (!delta) return;
-                                streamedAnswer += delta;
-                                upsertAssistantMessage(streamedAnswer);
-                            },
-                            onSentence: (sentence) => {
-                                const text = sentence?.trim();
-                                if (!text || !streamTtsQueue) return;
-                                if (activeConversationIdRef.current !== conversationId) return;
+    console.log("DELTA:", delta); // ✅ ADD HERE
 
-                                streamedSentenceCount += 1;
-                                // Fire-and-forget queueing keeps stream rendering responsive.
-                                void streamTtsQueue.addSentence(text, selectedLanguage);
-                            },
+    if (!delta) return;
+    streamedAnswer += delta;
+    upsertAssistantMessage(streamedAnswer);
+},
+                           onSentence: (sentence) => {
+    console.log("SENTENCE:", sentence); // ✅ ADD HERE
+
+    const text = sentence?.trim();
+    if (!text || !streamTtsQueue) return;
+    if (activeConversationIdRef.current !== conversationId) return;
+
+    streamedSentenceCount += 1;
+    void streamTtsQueue.addSentence(text, selectedLanguage);
+},
                             onDone: (payload) => {
-                                if (payload.answer && payload.answer.length > streamedAnswer.length) {
-                                    streamedAnswer = payload.answer;
-                                    upsertAssistantMessage(streamedAnswer);
-                                }
+    console.log("FINAL PAYLOAD:", payload); // ✅ ADD HERE
 
-                                streamedTrustScore = payload.trust_score;
-                                streamedEvidence = payload.evidence;
-                                streamedSources = payload.sources || [];
-                                upsertAssistantMessage(streamedAnswer, {
-                                    trustScore: streamedTrustScore,
-                                    evidence: streamedEvidence,
-                                    sources: streamedSources,
-                                });
-                            },
+    if (payload.answer && payload.answer.length > streamedAnswer.length) {
+        streamedAnswer = payload.answer;
+        upsertAssistantMessage(streamedAnswer);
+    }
+
+    streamedTrustScore = payload.trust_score;
+    streamedEvidence = payload.evidence;
+    streamedSources = payload.sources || [];
+
+    console.log("TRUST SCORE:", streamedTrustScore); // ✅ ADD
+    console.log("SOURCES:", streamedSources); // ✅ ADD
+
+    upsertAssistantMessage(streamedAnswer, {
+        trustScore: streamedTrustScore,
+        evidence: streamedEvidence,
+        sources: streamedSources,
+    });
+},
                             onError: (message) => {
-                                console.error('Streaming query error:', message);
-                            },
+    console.error("STREAM ERROR:", message); // ✅ IMPROVED
+},
                         },
                         {
                             signal: streamController.signal,
@@ -381,6 +394,8 @@ function App() {
                             inactivityTimeoutMs: 45000,
                         }
                     );
+
+console.log("STREAM CALL COMPLETED"); // ✅ ADD HERE
 
                     if (!streamedAnswer && response.answer) {
                         streamedAnswer = response.answer;
@@ -424,7 +439,7 @@ function App() {
                 const assistantMessage: Message = {
                     id: assistantMessageId,
                     type: 'assistant',
-                    content: response.answer,
+                    content: response.answer || "No response received from server.",
                     timestamp: new Date(),
                     language: selectedLanguage,
                     trustScore: response.trust_score,
@@ -444,7 +459,7 @@ function App() {
     };
 const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) => {
     const API = import.meta.env.VITE_API_URL;
-    console.log("API URL:", API);
+    console.log("API URL:", import.meta.env.VITE_API_URL);
 
     if (!transcript.trim() || backendStatus === 'offline') return;
 
