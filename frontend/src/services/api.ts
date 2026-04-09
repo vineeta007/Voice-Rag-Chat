@@ -122,7 +122,7 @@ export const apiService = {
         clientConversationId?: string
     ): Promise<QueryResponse> {
         try {
-            const response = await api.post<QueryResponse>('/api/query', {
+            const response = await api.post<QueryResponse>('/api/voice-query',  {
                 question,
                 language,
                 client_conversation_id: clientConversationId,
@@ -135,7 +135,7 @@ export const apiService = {
 
             // One retry helps during Render cold-start or transient gateway restarts.
             await sleep(RETRY_DELAY_MS);
-            const retryResponse = await api.post<QueryResponse>('/api/query', {
+            const retryResponse = await api.post<QueryResponse>('/api/voice-query',  {
                 question,
                 language,
                 client_conversation_id: clientConversationId,
