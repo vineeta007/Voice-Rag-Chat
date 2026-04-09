@@ -194,10 +194,25 @@ export const apiService = {
         return response.data.languages;
     },
 
-    async healthCheck(): Promise<{ status: string }> {
-        const response = await api.get<{ status: string }>('/api/health');
+   async healthCheck(): Promise<{ status: string }> {
+    try {
+        const response = await api.get<{ status: string }>('/api/health', {
+            timeout: 60000   // 🔥 increase timeout (important)
+        });
         return response.data;
-    },
+    } catch (error) {
+        console.warn("⚠️ Health check failed, retrying...");
+
+        // ⏳ wait for Render cold start
+        await new Promise(res => setTimeout(res, 5000));
+
+        const retry = await api.get<{ status: string }>('/api/health', {
+            timeout: 60000
+        });
+
+        return retry.data;
+    }
+},
 
     async clearSessionMemory(clientConversationId: string): Promise<void> {
         try {
