@@ -25,12 +25,10 @@ function App() {
     const messagesRef = useRef<Message[]>([]);
     const activeConversationIdRef = useRef<string | null>(null);
     const lastHydratedConversationIdRef = useRef<string | null>(null);
-    // Sidebar open by default on desktop, closed on mobile
     const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
     const [analyticsOpen, setAnalyticsOpen] = useState(false);
     const analyticsScrollRef = useRef<HTMLDivElement | null>(null);
 
-    // Handle window resize
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768) {
@@ -39,12 +37,10 @@ function App() {
                 setSidebarOpen(false);
             }
         };
-
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Conversation management
     const {
         conversations,
         activeConversation,
@@ -57,13 +53,9 @@ function App() {
         incrementConversationUnreadCount
     } = useConversations();
 
-    // Sync messages only when user actually switches to a different conversation.
-    // Avoid re-hydrating on every in-place conversation object update.
     useEffect(() => {
         activeConversationIdRef.current = activeConversationId;
 
-        // Wait until hook-derived activeConversation catches up with the selected ID.
-        // This avoids hydrating stale messages when ID changes before object resolution.
         if (activeConversationId && activeConversation?.id !== activeConversationId) {
             return;
         }
@@ -102,18 +94,14 @@ function App() {
         if (updateVisible) {
             setVisibleMessages(nextMessages);
         }
-
         updateConversationById(conversationId, nextMessages, language);
     };
 
-    // Listen for TTS events
     useEffect(() => {
         const handleTTSStart = () => setIsSpeaking(true);
         const handleTTSEnd = () => setIsSpeaking(false);
-
         window.addEventListener('tts-started', handleTTSStart);
         window.addEventListener('tts-ended', handleTTSEnd);
-
         return () => {
             window.removeEventListener('tts-started', handleTTSStart);
             window.removeEventListener('tts-ended', handleTTSEnd);
@@ -122,12 +110,11 @@ function App() {
 
     useEffect(() => {
         loadLanguages();
-        checkBackendHealth(); // Initial visible check
+        checkBackendHealth();
 
         const pollIntervalMs = API_BASE_URL.includes('.onrender.com') ? 30000 : 5000;
-
         const interval = setInterval(() => {
-            checkBackendHealth(true); // Silent poll
+            checkBackendHealth(true);
         }, pollIntervalMs);
 
         return () => clearInterval(interval);
@@ -156,15 +143,11 @@ function App() {
                 setBackendStatus('offline');
             }
         } catch (error) {
-            // Only log errors on initial check to avoid console spam
             if (!silent) console.error('Backend health check failed:', error);
-            if (!silent) {
-                setBackendStatus('offline');
-            }
+            if (!silent) setBackendStatus('offline');
         }
     };
 
-    // Fetch ElevenLabs subscription status periodically
     useEffect(() => {
         const fetchElevenlabsStatus = async () => {
             try {
@@ -176,14 +159,11 @@ function App() {
                     }
                 }
             } catch (error) {
-                // Silent fail - only for optional display
+                // Silent fail
             }
         };
 
-        // Check immediately
         fetchElevenlabsStatus();
-
-        // Check every 60 seconds (to avoid frequent API calls)
         const interval = setInterval(fetchElevenlabsStatus, 60000);
         return () => clearInterval(interval);
     }, []);
@@ -192,13 +172,11 @@ function App() {
         streamAbortControllerRef.current?.abort();
         streamAbortControllerRef.current = null;
         syncedQueueRef.current?.clear();
-        stopSpeaking(); // Stop any ongoing speech
-        setVisibleMessages([]); // Clear messages from UI
-        // If there's an active conversation, clear its messages too
+        stopSpeaking();
+        setVisibleMessages([]);
         if (activeConversationIdRef.current) {
             const currentId = activeConversationIdRef.current;
             updateConversationById(currentId, [], selectedLanguage);
-            // Keep backend session memory aligned with cleared UI chat.
             void apiService.clearSessionMemory(currentId);
         }
     };
@@ -226,13 +204,12 @@ function App() {
         switchConversation(id);
     };
 
+    // ─── FIX: handleTextQuery is a standalone function ───────────────────────
     const handleTextQuery = async (question: string) => {
         if (!question.trim() || backendStatus === 'offline') return;
 
-        // Stop any previous playback before starting a new streamed response.
         syncedQueueRef.current?.clear();
         stopSpeaking();
-
         setIsProcessing(true);
 
         let conversationId = activeConversationIdRef.current;
@@ -253,74 +230,66 @@ function App() {
         const userMessages = [...messagesRef.current, userMessage];
         persistConversationMessages(conversationId, userMessages, selectedLanguage, true);
 
+        const useStreamingText = true;
+        const assistantMessageId = (Date.now() + 1).toString();
+        let streamedAnswer = '';
+
+        // ─── FIX: upsertAssistantMessage defined BEFORE it is used ───────────
+        const upsertAssistantMessage = (
+            content: string,
+            metadata?: {
+                trustScore?: number;
+                evidence?: QueryResponse['evidence'];
+                sources?: QueryResponse['sources'];
+            }
+        ) => {
+            const stillActive = activeConversationIdRef.current === conversationId;
+            const baseMessages = stillActive ? messagesRef.current : userMessages;
+            const existingIndex = baseMessages.findIndex((msg) => msg.id === assistantMessageId);
+
+            let nextMessages: Message[];
+            if (existingIndex >= 0) {
+                nextMessages = baseMessages.map((msg) =>
+                    msg.id === assistantMessageId ? { ...msg, content } : msg
+                );
+            } else {
+                nextMessages = [
+                    ...baseMessages,
+                    {
+                        id: assistantMessageId,
+                        type: 'assistant',
+                        content,
+                        timestamp: new Date(),
+                        language: selectedLanguage,
+                        trustScore: metadata?.trustScore,
+                        evidence: metadata?.evidence,
+                        sources: metadata?.sources,
+                    },
+                ];
+
+                if (!stillActive) {
+                    incrementConversationUnreadCount(conversationId!);
+                }
+            }
+
+            if (existingIndex >= 0 && metadata) {
+                nextMessages = nextMessages.map((msg) =>
+                    msg.id === assistantMessageId
+                        ? {
+                              ...msg,
+                              trustScore: metadata.trustScore ?? msg.trustScore,
+                              evidence: metadata.evidence ?? msg.evidence,
+                              sources: metadata.sources ?? msg.sources,
+                          }
+                        : msg
+                );
+            }
+
+            persistConversationMessages(conversationId!, nextMessages, selectedLanguage, stillActive);
+        };
+
+        // ─── FIX: streaming logic is at the top level of handleTextQuery ─────
         try {
-           const useStreamingText = false;
-            // TTS should NOT auto-play on text queries, only on voice queries
-            const useStreamingTTS = false;
-            const assistantMessageId = (Date.now() + 1).toString();
-            let streamedAnswer = '';
-            let streamedTrustScore: number | undefined;
-            let streamedEvidence: QueryResponse['evidence'] = undefined;
-            let streamedSources: QueryResponse['sources'] = [];
-            let streamTtsQueue: {
-                addSentence: (text: string, language: string) => Promise<void>;
-                clear: () => void;
-            } | null = null;
-
-            const upsertAssistantMessage = (
-                content: string,
-                metadata?: {
-                    trustScore?: number;
-                    evidence?: QueryResponse['evidence'];
-                    sources?: QueryResponse['sources'];
-                }
-            ) => {
-                const stillActive = activeConversationIdRef.current === conversationId;
-                const baseMessages = stillActive ? messagesRef.current : userMessages;
-                const existingIndex = baseMessages.findIndex((msg) => msg.id === assistantMessageId);
-
-                let nextMessages: Message[];
-                if (existingIndex >= 0) {
-                    nextMessages = baseMessages.map((msg) =>
-                        msg.id === assistantMessageId ? { ...msg, content } : msg
-                    );
-                } else {
-                    nextMessages = [
-                        ...baseMessages,
-                        {
-                            id: assistantMessageId,
-                            type: 'assistant',
-                            content,
-                            timestamp: new Date(),
-                            language: selectedLanguage,
-                            trustScore: metadata?.trustScore,
-                            evidence: metadata?.evidence,
-                            sources: metadata?.sources,
-                        },
-                    ];
-                    
-                    // Increment unread count for non-active conversation - Phase 2.5
-                    if (!stillActive) {
-                        incrementConversationUnreadCount(conversationId);
-                    }
-                }
-
-                if (existingIndex >= 0 && metadata) {
-                    nextMessages = nextMessages.map((msg) =>
-                        msg.id === assistantMessageId
-                            ? {
-                                  ...msg,
-                                  trustScore: metadata.trustScore ?? msg.trustScore,
-                                  evidence: metadata.evidence ?? msg.evidence,
-                                                                    sources: metadata.sources ?? msg.sources,
-                              }
-                            : msg
-                    );
-                }
-
-                persistConversationMessages(conversationId, nextMessages, selectedLanguage, stillActive);
-            };
-
             if (useStreamingText) {
                 upsertAssistantMessage('');
 
@@ -328,224 +297,102 @@ function App() {
                 const streamController = new AbortController();
                 streamAbortControllerRef.current = streamController;
 
-                if (useStreamingTTS) {
-                    const { SyncedTTSQueue } = await import('./utils/syncedAudio');
-                    streamTtsQueue = new SyncedTTSQueue();
-                    syncedQueueRef.current = streamTtsQueue;
-                }
-
-                let streamedSentenceCount = 0;
-
-try {
-    // ✅ ADD THESE TWO LINES HERE
-    console.log("QUESTION SENT:", question);
-    console.log("CONVERSATION ID:", conversationId);
-
-    const response = await apiService.textQueryStream(
+                try {
+                    await apiService.textQueryStream(
                         question,
                         selectedLanguage,
                         conversationId,
                         {
                             onDelta: (delta) => {
-    console.log("DELTA:", delta); // ✅ ADD HERE
-
-    if (!delta) return;
-    streamedAnswer += delta;
-    upsertAssistantMessage(streamedAnswer);
-},
-                           onSentence: (sentence) => {
-    console.log("SENTENCE:", sentence); // ✅ ADD HERE
-
-    const text = sentence?.trim();
-    if (!text || !streamTtsQueue) return;
-    if (activeConversationIdRef.current !== conversationId) return;
-
-    streamedSentenceCount += 1;
-    void streamTtsQueue.addSentence(text, selectedLanguage);
-},
+                                if (!delta) return;
+                                streamedAnswer += delta;
+                                upsertAssistantMessage(streamedAnswer);
+                            },
                             onDone: (payload) => {
-    console.log("FINAL PAYLOAD:", payload); // ✅ ADD HERE
-
-    if (payload.answer && payload.answer.length > streamedAnswer.length) {
-        streamedAnswer = payload.answer;
-        upsertAssistantMessage(streamedAnswer);
-    }
-
-    streamedTrustScore = payload.trust_score;
-    streamedEvidence = payload.evidence;
-    streamedSources = payload.sources || [];
-
-    console.log("TRUST SCORE:", streamedTrustScore); // ✅ ADD
-    console.log("SOURCES:", streamedSources); // ✅ ADD
-
-    upsertAssistantMessage(streamedAnswer, {
-        trustScore: streamedTrustScore,
-        evidence: streamedEvidence,
-        sources: streamedSources,
-    });
-},
-                            onError: (message) => {
-    console.error("STREAM ERROR:", message); // ✅ IMPROVED
-},
+                                streamedAnswer = payload.answer;
+                                upsertAssistantMessage(streamedAnswer, {
+                                    trustScore: payload.trust_score,
+                                    evidence: payload.evidence,
+                                    sources: payload.sources || [],
+                                });
+                            },
+                            onError: (err) => {
+                                console.error('STREAM ERROR:', err);
+                            },
                         },
                         {
                             signal: streamController.signal,
                             timeoutMs: 120000,
-                            inactivityTimeoutMs: 45000,
                         }
                     );
-
-console.log("STREAM CALL COMPLETED"); // ✅ ADD HERE
-
-                    if (!streamedAnswer && response.answer) {
-                        streamedAnswer = response.answer;
-                        upsertAssistantMessage(response.answer);
-                    }
-
-                    // If no chunk was spoken during stream, fallback to one-shot TTS.
-                    if (useStreamingTTS && streamTtsQueue && streamedSentenceCount === 0 && streamedAnswer.trim()) {
-                        void streamTtsQueue.addSentence(streamedAnswer.trim(), selectedLanguage);
-                    }
-                } catch (streamError) {
-                    console.error('Streaming path failed, falling back to non-stream query', streamError);
-
-                    const fallbackResponse = await apiService.textQuery(question, selectedLanguage, conversationId);
+                } catch (error) {
+                    const fallbackResponse = await apiService.textQuery(
+                        question,
+                        selectedLanguage,
+                        conversationId
+                    );
                     streamedAnswer = fallbackResponse.answer;
-                    upsertAssistantMessage(fallbackResponse.answer, {
+                    upsertAssistantMessage(streamedAnswer, {
                         trustScore: fallbackResponse.trust_score,
                         evidence: fallbackResponse.evidence,
                         sources: fallbackResponse.sources,
                     });
-
-                    // Graceful fallback to full-response TTS if stream path fails.
-                    if (useStreamingTTS) {
-                        if (!streamTtsQueue) {
-                            const { SyncedTTSQueue } = await import('./utils/syncedAudio');
-                            streamTtsQueue = new SyncedTTSQueue();
-                            syncedQueueRef.current = streamTtsQueue;
-                        }
-                        if (fallbackResponse.answer?.trim()) {
-                            void streamTtsQueue.addSentence(fallbackResponse.answer.trim(), selectedLanguage);
-                        }
-                    }
                 } finally {
                     if (streamAbortControllerRef.current === streamController) {
                         streamAbortControllerRef.current = null;
                     }
+                    setIsProcessing(false);
                 }
-            } else {
-                const response = await apiService.textQuery(question, selectedLanguage, conversationId);
-
-                const assistantMessage: Message = {
-                    id: assistantMessageId,
-                    type: 'assistant',
-                    content: response.answer || "No response received from server.",
-                    timestamp: new Date(),
-                    language: selectedLanguage,
-                    trustScore: response.trust_score,
-                    evidence: response.evidence,
-                    sources: response.sources,
-                };
-
-                const stillActive = activeConversationIdRef.current === conversationId;
-                const assistantMessages = [...(stillActive ? messagesRef.current : userMessages), assistantMessage];
-              persistConversationMessages(conversationId, assistantMessages, selectedLanguage, stillActive);
             }
         } catch (error) {
-            console.error('Error querying backend:', error);
-        } finally {
+            console.error('handleTextQuery error:', error);
             setIsProcessing(false);
         }
     };
-const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) => {
-    const API = import.meta.env.VITE_API_URL;
-    console.log("API URL:", import.meta.env.VITE_API_URL);
 
-    if (!transcript.trim() || backendStatus === 'offline') return;
+    // ─── FIX: handleVoiceQuery is a sibling of handleTextQuery ───────────────
+    const handleVoiceQuery = async (transcript: string) => {
+        if (!transcript.trim()) return;
+        await handleTextQuery(transcript);
+    };
 
-    setIsProcessing(true);
-
-    try {
-        let conversationId = activeConversationIdRef.current;
-        if (!conversationId) {
-            conversationId = createNewConversation(selectedLanguage);
-            activeConversationIdRef.current = conversationId;
-            lastHydratedConversationIdRef.current = conversationId;
-        }
-
-        const userMessage: Message = {
-            id: Date.now().toString(),
-            type: 'user',
-            content: transcript,
-            timestamp: new Date(),
-            language: selectedLanguage,
-            isVoice: true,
-        };
-
-        const userMessages = [...messagesRef.current, userMessage];
-        persistConversationMessages(conversationId, userMessages, selectedLanguage, true);
-        const response = await apiService.textQuery(transcript, selectedLanguage, conversationId);
-
-        const assistantMessage: Message = {
-            id: (Date.now() + 1).toString(),
-            type: 'assistant',
-            content: response.answer,
-            timestamp: new Date(),
-            language: selectedLanguage,
-            trustScore: response.trust_score,
-            evidence: response.evidence,
-            sources: response.sources,
-        };
-
-        const stillActive = activeConversationIdRef.current === conversationId;
-        const assistantMessages = [...(stillActive ? messagesRef.current : userMessages), assistantMessage];
-
-       persistConversationMessages(conversationId, assistantMessages, selectedLanguage, stillActive);
-
-    } catch (error) {
-        console.error("Voice API error:", error);
-    } finally {
-        setIsProcessing(false);
-    }
-};
-
+    // ─── FIX: handleRegenerate is a sibling of handleTextQuery ───────────────
     const handleRegenerate = (assistantMessageId: string) => {
         const currentMessages = messagesRef.current;
-        const assistantIndex = currentMessages.findIndex((msg) => msg.id === assistantMessageId && msg.type === 'assistant');
-        if (assistantIndex < 0) {
-            return;
-        }
+        const assistantIndex = currentMessages.findIndex(
+            (msg) => msg.id === assistantMessageId && msg.type === 'assistant'
+        );
+        if (assistantIndex < 0) return;
 
-        const questionMessage = currentMessages.slice(0, assistantIndex).reverse().find((msg) => msg.type === 'user');
-        if (!questionMessage) {
-            return;
-        }
+        const questionMessage = currentMessages
+            .slice(0, assistantIndex)
+            .reverse()
+            .find((msg) => msg.type === 'user');
+        if (!questionMessage) return;
 
         handleTextQuery(questionMessage.content);
     };
 
     const handleFeedback = (messageId: string, rating: 'positive' | 'negative', reason?: string) => {
         const conversationId = activeConversationIdRef.current;
-        if (!conversationId) {
-            return;
-        }
+        if (!conversationId) return;
 
         const updatedMessages = messagesRef.current.map((msg) =>
             msg.id === messageId
                 ? {
-                    ...msg,
-                    feedback: rating,
-                    feedbackReason: rating === 'negative' ? reason ?? msg.feedbackReason : undefined,
-                }
+                      ...msg,
+                      feedback: rating,
+                      feedbackReason: rating === 'negative' ? reason ?? msg.feedbackReason : undefined,
+                  }
                 : msg
         );
 
         persistConversationMessages(conversationId, updatedMessages, selectedLanguage, true);
     };
 
-    const userMessages = messages.filter((msg) => msg.type === 'user');
+    const userMessagesList = messages.filter((msg) => msg.type === 'user');
     const assistantMessages = messages.filter((msg) => msg.type === 'assistant');
-    const totalQueries = userMessages.length;
+    const totalQueries = userMessagesList.length;
     const assistantConfidences = assistantMessages
         .filter((msg) => typeof msg.trustScore === 'number')
         .map((msg) => msg.trustScore as number);
@@ -554,7 +401,7 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
         : undefined;
 
     const avgResponseTime = (() => {
-        const responseDurations = userMessages
+        const responseDurations = userMessagesList
             .map((userMessage) => {
                 const userIndex = messages.findIndex((msg) => msg.id === userMessage.id);
                 if (userIndex < 0) return undefined;
@@ -582,7 +429,6 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
             const questionMessage = assistantIndex >= 0
                 ? messages.slice(0, assistantIndex).reverse().find((msg) => msg.type === 'user')
                 : undefined;
-
             return {
                 question: questionMessage?.content ?? 'Recent response',
                 feedback: assistantMsg.feedback,
@@ -598,7 +444,11 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
         const series = Array.from({ length: 7 }, (_, index) => {
             const date = new Date(today);
             date.setDate(today.getDate() - (6 - index));
-            return { key: date.toISOString().slice(0, 10), label: date.toLocaleDateString('en-US', { weekday: 'short' }), value: 0 };
+            return {
+                key: date.toISOString().slice(0, 10),
+                label: date.toLocaleDateString('en-US', { weekday: 'short' }),
+                value: 0,
+            };
         });
 
         const indexByKey = series.reduce<Record<string, number>>((map, entry, index) => {
@@ -606,12 +456,10 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
             return map;
         }, {});
 
-        userMessages.forEach((msg) => {
+        userMessagesList.forEach((msg) => {
             const key = walk(msg.timestamp).toISOString().slice(0, 10);
             const idx = indexByKey[key];
-            if (idx !== undefined) {
-                series[idx].value += 1;
-            }
+            if (idx !== undefined) series[idx].value += 1;
         });
 
         return series;
@@ -626,7 +474,7 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
         })
         .join(' ');
 
-    const questionCounts = userMessages.reduce<Record<string, number>>((counts, msg) => {
+    const questionCounts = userMessagesList.reduce<Record<string, number>>((counts, msg) => {
         const text = msg.content.trim();
         if (!text) return counts;
         counts[text] = (counts[text] || 0) + 1;
@@ -641,11 +489,11 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
     const stopWords = new Set([
         'what', 'when', 'where', 'who', 'which', 'why', 'how', 'the', 'a', 'an', 'and', 'for', 'with',
         'about', 'from', 'to', 'of', 'in', 'on', 'is', 'are', 'does', 'do', 'can', 'i', 'you', 'your', 'my',
-        'tell', 'me', 'please', 'show', 'admission', 'admissions', 'course', 'courses', 'please'
+        'tell', 'me', 'please', 'show', 'admission', 'admissions', 'course', 'courses',
     ]);
 
     const topicChartData = (() => {
-        const tokenCounts = userMessages
+        const tokenCounts = userMessagesList
             .flatMap((msg) =>
                 msg.content
                     .toLowerCase()
@@ -665,11 +513,11 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
     })();
 
     const mostAskedTopic = topicChartData[0]?.label || 'General';
+
     const pieSeries = (() => {
         const total = topicChartData.reduce((sum, item) => sum + item.count, 0) || 1;
         const colors = ['#ff7a18', '#22c55e', '#6366f1', '#14b8a6', '#f97316'];
         let start = 0;
-
         return topicChartData.map((item, index) => {
             const percent = (item.count / total) * 100;
             const slice = {
@@ -701,7 +549,6 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
 
     return (
         <div className="app">
-            {/* Conversation Sidebar */}
             <ConversationSidebar
                 conversations={conversations}
                 activeConversationId={activeConversationId}
@@ -713,12 +560,10 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
                 onToggle={() => setSidebarOpen(!sidebarOpen)}
             />
 
-            {/* Main Content */}
             <div className="app-content">
                 <header>
                     <div className="header-content">
                         <div className="logo-section">
-                            {/* Mobile Sidebar Toggle - Visible only on mobile via CSS */}
                             <button
                                 className="mobile-menu-btn"
                                 onClick={() => setSidebarOpen(true)}
@@ -734,9 +579,11 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
                             <div className="status-indicator">
                                 <span className={`status-dot ${backendStatus}`}></span>
                                 <span>
-                                    {backendStatus === 'checking' && 'Connecting...'}
-                                    {backendStatus === 'online' && 'Connected'}
-                                    {backendStatus === 'offline' && 'Offline'}
+                                    {backendStatus === 'checking'
+                                        ? 'Connecting...'
+                                        : backendStatus === 'online'
+                                        ? 'Connected'
+                                        : 'Offline'}
                                 </span>
                             </div>
 
@@ -821,141 +668,141 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
 
                     <div className="analytics-sidebar-content" ref={analyticsScrollRef}>
                         <div className="analytics-grid">
-                        <div className="analytics-card compact">
-                            <span className="analytics-label">Queries asked</span>
-                            <strong>{totalQueries}</strong>
+                            <div className="analytics-card compact">
+                                <span className="analytics-label">Queries asked</span>
+                                <strong>{totalQueries}</strong>
+                            </div>
+                            <div className="analytics-card compact">
+                                <span className="analytics-label">Avg response time</span>
+                                <strong>{responseTimeDisplay}</strong>
+                            </div>
+                            <div className="analytics-card compact">
+                                <span className="analytics-label">Avg confidence</span>
+                                <strong>{avgConfidence !== undefined ? `${avgConfidence}%` : '—'}</strong>
+                            </div>
+                            <div className="analytics-card compact">
+                                <span className="analytics-label">User satisfaction</span>
+                                <strong>{satisfactionPercent !== undefined ? `${satisfactionPercent}%` : '—'}</strong>
+                            </div>
+                            <div className="analytics-card compact">
+                                <span className="analytics-label">Low-confidence alerts</span>
+                                <strong>{lowConfidenceCount}</strong>
+                            </div>
+                            <div className="analytics-card compact">
+                                <span className="analytics-label">Top topic</span>
+                                <strong>{mostAskedTopic}</strong>
+                            </div>
                         </div>
-                        <div className="analytics-card compact">
-                            <span className="analytics-label">Avg response time</span>
-                            <strong>{responseTimeDisplay}</strong>
-                        </div>
-                        <div className="analytics-card compact">
-                            <span className="analytics-label">Avg confidence</span>
-                            <strong>{avgConfidence !== undefined ? `${avgConfidence}%` : '—'}</strong>
-                        </div>
-                        <div className="analytics-card compact">
-                            <span className="analytics-label">User satisfaction</span>
-                            <strong>{satisfactionPercent !== undefined ? `${satisfactionPercent}%` : '—'}</strong>
-                        </div>
-                        <div className="analytics-card compact">
-                            <span className="analytics-label">Low-confidence alerts</span>
-                            <strong>{lowConfidenceCount}</strong>
-                        </div>
-                        <div className="analytics-card compact">
-                            <span className="analytics-label">Top topic</span>
-                            <strong>{mostAskedTopic}</strong>
-                        </div>
-                    </div>
 
-                    <div className="analytics-card chart-card">
-                        <div className="analytics-card-title">Queries over time</div>
-                        <svg viewBox="0 0 280 100" className="line-chart" aria-label="Queries over time line chart">
-                            <defs>
-                                <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="0%" stopColor="#ff7a18" />
-                                    <stop offset="100%" stopColor="#f97316" />
-                                </linearGradient>
-                            </defs>
-                            <polyline
-                                fill="none"
-                                stroke="url(#lineGradient)"
-                                strokeWidth="3"
-                                strokeLinecap="round"
-                                points={lineChartPoints}
-                            />
-                            {queryTimeSeries.map((item, index) => {
-                                const x = 20 + index * 34;
-                                const y = 80 - (item.value / lineMax) * 70;
-                                return (
-                                    <g key={item.key}>
-                                        <circle cx={x} cy={y} r="4" fill="#ff7a18" />
-                                        <text x={x} y={y - 8} textAnchor="middle" className="chart-point-label">
-                                            {item.value}
+                        <div className="analytics-card chart-card">
+                            <div className="analytics-card-title">Queries over time</div>
+                            <svg viewBox="0 0 280 100" className="line-chart" aria-label="Queries over time line chart">
+                                <defs>
+                                    <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                        <stop offset="0%" stopColor="#ff7a18" />
+                                        <stop offset="100%" stopColor="#f97316" />
+                                    </linearGradient>
+                                </defs>
+                                <polyline
+                                    fill="none"
+                                    stroke="url(#lineGradient)"
+                                    strokeWidth="3"
+                                    strokeLinecap="round"
+                                    points={lineChartPoints}
+                                />
+                                {queryTimeSeries.map((item, index) => {
+                                    const x = 20 + index * 34;
+                                    const y = 80 - (item.value / lineMax) * 70;
+                                    return (
+                                        <g key={item.key}>
+                                            <circle cx={x} cy={y} r="4" fill="#ff7a18" />
+                                            <text x={x} y={y - 8} textAnchor="middle" className="chart-point-label">
+                                                {item.value}
+                                            </text>
+                                        </g>
+                                    );
+                                })}
+                                {queryTimeSeries.map((item, index) => {
+                                    const x = 20 + index * 34;
+                                    return (
+                                        <text key={`${item.key}-label`} x={x} y="98" textAnchor="middle" className="chart-axis-label">
+                                            {item.label}
                                         </text>
-                                    </g>
-                                );
-                            })}
-                            {queryTimeSeries.map((item, index) => {
-                                const x = 20 + index * 34;
-                                return (
-                                    <text key={`${item.key}-label`} x={x} y="98" textAnchor="middle" className="chart-axis-label">
-                                        {item.label}
-                                    </text>
-                                );
-                            })}
-                        </svg>
-                    </div>
-
-                    <div className="analytics-bottom-row">
-                        <div className="analytics-card chart-card pie-card">
-                            <div className="analytics-card-title">Topic distribution</div>
-                            {pieSeries.length > 0 ? (
-                                <div className="pie-chart-wrapper">
-                                    <svg viewBox="0 0 200 200" className="pie-chart" aria-label="Topic distribution pie chart">
-                                        {pieSeries.map((slice) => {
-                                            const startAngle = (slice.angleStart / 100) * 360;
-                                            const endAngle = (slice.angleEnd / 100) * 360;
-                                            return (
-                                                <path
-                                                    key={slice.label}
-                                                    d={describeArc(100, 100, 85, startAngle, endAngle)}
-                                                    fill={slice.color}
-                                                />
-                                            );
-                                        })}
-                                        <circle cx="100" cy="100" r="70" className="pie-chart-center" />
-                                    </svg>
-                                    <div className="pie-legend">
-                                        {pieSeries.map((slice) => (
-                                            <div key={slice.label} className="pie-legend-item">
-                                                <span className="pie-bullet" style={{ background: slice.color }} />
-                                                <span>{slice.label}</span>
-                                                <strong>{slice.count}</strong>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ) : (
-                                <p className="analytics-empty">Ask a few questions to populate topic distribution.</p>
-                            )}
+                                    );
+                                })}
+                            </svg>
                         </div>
 
-                        <div className="analytics-card analytics-section most-asked-card">
-                            <div className="analytics-card-title">Most asked questions</div>
-                            {mostAskedQuestions.length > 0 ? (
+                        <div className="analytics-bottom-row">
+                            <div className="analytics-card chart-card pie-card">
+                                <div className="analytics-card-title">Topic distribution</div>
+                                {pieSeries.length > 0 ? (
+                                    <div className="pie-chart-wrapper">
+                                        <svg viewBox="0 0 200 200" className="pie-chart" aria-label="Topic distribution pie chart">
+                                            {pieSeries.map((slice) => {
+                                                const startAngle = (slice.angleStart / 100) * 360;
+                                                const endAngle = (slice.angleEnd / 100) * 360;
+                                                return (
+                                                    <path
+                                                        key={slice.label}
+                                                        d={describeArc(100, 100, 85, startAngle, endAngle)}
+                                                        fill={slice.color}
+                                                    />
+                                                );
+                                            })}
+                                            <circle cx="100" cy="100" r="70" className="pie-chart-center" />
+                                        </svg>
+                                        <div className="pie-legend">
+                                            {pieSeries.map((slice) => (
+                                                <div key={slice.label} className="pie-legend-item">
+                                                    <span className="pie-bullet" style={{ background: slice.color }} />
+                                                    <span>{slice.label}</span>
+                                                    <strong>{slice.count}</strong>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <p className="analytics-empty">Ask a few questions to populate topic distribution.</p>
+                                )}
+                            </div>
+
+                            <div className="analytics-card analytics-section most-asked-card">
+                                <div className="analytics-card-title">Most asked questions</div>
+                                {mostAskedQuestions.length > 0 ? (
+                                    <ol className="analytics-list">
+                                        {mostAskedQuestions.map((question, index) => (
+                                            <li key={`${question}-${index}`}>{question}</li>
+                                        ))}
+                                    </ol>
+                                ) : (
+                                    <p className="analytics-empty">No questions yet.</p>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="analytics-section">
+                            <div className="analytics-card-title">User feedback</div>
+                            {feedbackEntries.length > 0 ? (
                                 <ol className="analytics-list">
-                                    {mostAskedQuestions.map((question, index) => (
-                                        <li key={`${question}-${index}`}>{question}</li>
+                                    {feedbackEntries.map((entry, index) => (
+                                        <li key={`${entry.question}-${index}`}>
+                                            <strong>{entry.feedback === 'positive' ? '👍' : '👎'}</strong>
+                                            <span className="analytics-feedback-question">{entry.question}</span>
+                                            {entry.reason && (
+                                                <div className="analytics-feedback-reason">"{entry.reason}"</div>
+                                            )}
+                                        </li>
                                     ))}
                                 </ol>
                             ) : (
-                                <p className="analytics-empty">No questions yet.</p>
+                                <p className="analytics-empty">No user feedback yet. Rate responses in the chat to populate this section.</p>
                             )}
                         </div>
                     </div>
-
-                    <div className="analytics-section">
-                        <div className="analytics-card-title">User feedback</div>
-                        {feedbackEntries.length > 0 ? (
-                            <ol className="analytics-list">
-                                {feedbackEntries.map((entry, index) => (
-                                    <li key={`${entry.question}-${index}`}>
-                                        <strong>{entry.feedback === 'positive' ? '👍' : '👎'}</strong>
-                                        <span className="analytics-feedback-question">{entry.question}</span>
-                                        {entry.reason && (
-                                            <div className="analytics-feedback-reason">"{entry.reason}"</div>
-                                        )}
-                                    </li>
-                                ))}
-                            </ol>
-                        ) : (
-                            <p className="analytics-empty">No user feedback yet. Rate responses in the chat to populate this section.</p>
-                        )}
-                    </div>
-                </div>
                 </aside>
 
-{!analyticsOpen && (
+                {!analyticsOpen && (
                     <main>
                         <div className="chat-container">
                             {messages.length === 0 ? (
@@ -963,17 +810,16 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
                                     <div className="welcome-icon">🎓</div>
                                     <h2>Welcome to Voice RAG!</h2>
                                     <p>Ask me anything about UIT (Unitedworld Institute of Technology) - admissions, programs, faculty, facilities, and more!</p>
-
                                     <div className="example-questions">
-                                        <div className="example-question" onClick={() => handleTextQuery("What are the admission requirements for B.Tech CSE?")}> 
+                                        <div className="example-question" onClick={() => handleTextQuery("What are the admission requirements for B.Tech CSE?")}>
                                             <div className="icon">📚</div>
                                             <div className="text">What are the admission requirements for B.Tech CSE?</div>
                                         </div>
-                                        <div className="example-question" onClick={() => handleTextQuery("Tell me about hostel facilities")}> 
+                                        <div className="example-question" onClick={() => handleTextQuery("Tell me about hostel facilities")}>
                                             <div className="icon">🏠</div>
                                             <div className="text">Tell me about hostel facilities</div>
                                         </div>
-                                        <div className="example-question" onClick={() => handleTextQuery("Who is the dean of UIT?")}> 
+                                        <div className="example-question" onClick={() => handleTextQuery("Who is the dean of UIT?")}>
                                             <div className="icon">👨‍🏫</div>
                                             <div className="text">Who is the dean of UIT?</div>
                                         </div>
@@ -1016,9 +862,7 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
                                         <div className="wave"></div>
                                         <div className="wave"></div>
                                     </div>
-                                    <span className="speaking-indicator">
-                                        🎵 AI is speaking...
-                                    </span>
+                                    <span className="speaking-indicator">🎵 AI is speaking...</span>
                                     <button
                                         className="stop-speaking-btn"
                                         onClick={handleStopSpeaking}
@@ -1031,11 +875,11 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
 
                             <div className="input-container">
                                 {inputMode === 'text' ? (
-                                    <TextInput onSubmit={handleTextQuery} isProcessing={isProcessing || backendStatus === 'offline'} />
+                                    <TextInput onSubmit={handleTextQuery} isProcessing={isProcessing || backendStatus !== 'online'} />
                                 ) : (
                                     <VoiceInput
                                         onTranscript={handleVoiceQuery}
-                                        isProcessing={isProcessing || backendStatus === 'offline'}
+                                        isProcessing={isProcessing || backendStatus !== 'online'}
                                         selectedLanguage={selectedLanguage}
                                     />
                                 )}
@@ -1043,7 +887,7 @@ const handleVoiceQuery = async (transcript: string, _detectedLanguage?: string) 
                         </div>
                     </footer>
                 )}
-            </div> {/* End app-content */}
+            </div>
         </div>
     );
 }
